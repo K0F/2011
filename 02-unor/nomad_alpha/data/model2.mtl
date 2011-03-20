@@ -1,0 +1,97 @@
+int pocetCervu = 300;
+ArrayList swarm;
+
+void setup() {
+  background(0);
+  size(600, 400, P2D);
+  strokeWeight(2);
+  
+  swarm = new ArrayList();
+  for(int f = 0; f < pocetCervu; f++) {
+    swarm.add(new Worm(f));
+  }
+
+}
+
+void draw() {
+  fill(20,50,5,random(5));
+  rect(0,0,width,height);
+
+  for(int p = swarm.size()-1; p >= 0; p--) {
+    Worm worm = (Worm) swarm.get(p);
+    worm.pozice();
+    worm.cerv();
+    worm.colo(255,20);
+  }
+  stroke(0);
+  image(get(),random(3)-1.5,1);
+}
+
+class Worm
+{
+  int id;
+  int delka = 10;
+  float[] x = new float[delka];
+  float[] y = new float[delka];
+  float a = random(width);
+  float b = random(height);
+  float segLength = 10;
+  float c=255;
+  float alp=10;
+
+  Worm(int idin) {
+    id = idin;
+  }
+
+  void pozice() {
+    a += (random(50)-25);
+    b += (random(50)-25);
+
+    if(a>width) {
+      a-=random(25);
+    }
+    if(a<0) {
+      a+=random(25);
+    }
+    if(b>height) {
+      b-=random(25);
+    }
+    if(b<0) {
+      b+=random(25);
+    }
+
+    x[0]=a;
+    y[0]=b;
+  }
+
+  void cerv() {
+    for(int i = 1; i < delka; i++) {
+      dragSegment(i, x[i-1], y[i-1]);
+    }
+  }
+
+  void dragSegment(int i, float xin, float yin) {
+    float dx = xin - x[i];
+    float dy = yin - y[i];
+    float angle = atan2(dy, dx);  
+    x[i] = xin - cos(angle) * segLength;
+    y[i] = yin - sin(angle) * segLength;
+    segment(x[i], y[i], angle);
+  }
+
+  void segment(float x, float y, float a) {
+    pushMatrix();
+    translate(x, y);
+    rotate(a);
+    stroke(c,alp);
+    line(0, 0, segLength, 0);
+    popMatrix();
+  }
+  
+  void colo(float cc, float aa){
+    c = cc;
+    alp = aa;
+  }
+}
+
+
