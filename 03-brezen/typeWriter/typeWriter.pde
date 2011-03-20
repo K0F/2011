@@ -1,8 +1,6 @@
-
 import processing.opengl.*;
 
 PFont font;
-
 
 String tex = "Counting of letters is quite useles, when you want to understand the meaning of the text.";
 float sizes[] = new float[tex.length()];
@@ -49,9 +47,5 @@ void draw(){
         x+=textWidth(tex.charAt(i));
     }
 
-
-
     popMatrix();
-
-
 }
