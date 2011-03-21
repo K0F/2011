@@ -65,7 +65,7 @@ class LineDisp{
         x = 0;
         
         for(int i = 0 ; i<tex.length() ; i++){
-            sizes[i] = noise((frameCount)/((int)tex.charAt(i)/2.0))*siz; //noise(frameCount/80.0) * noise((frameCount)/(30.0+i)) * 32;
+            sizes[i] = noise((frameCount)/((int)tex.charAt(i)/2.0))*siz;
             textFont(font,sizes[i]);
             x+=textWidth(tex.charAt(i));
         }
