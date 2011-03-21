@@ -1,21 +1,19 @@
-import processing.opengl.*;
-
 PFont font;
 
 String complete[];
 ArrayList tx = new ArrayList();
 
-boolean render = true;
+boolean render = false;
 
-int siz = 64;
+int siz = 32;
 
 void setup(){
-    size(800,450,P2D);
+    size(500,300,P2D);
 
     complete = loadStrings("text.txt");
 
     for(int i = 0;i<complete.length;i++){
-        tx.add(new LineDisp(complete[i],80+i*30f));
+        tx.add(new LineDisp(complete[i],80+i*siz/2));
     }
 
 
