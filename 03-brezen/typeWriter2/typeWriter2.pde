@@ -17,7 +17,7 @@ void setup(){
     }
 
 
-    font = createFont("Aller",siz,true);
+    font = loadFont("Aller-32.vlw");
     fill(255);
 }
 
