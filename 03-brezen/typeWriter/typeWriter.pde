@@ -7,8 +7,10 @@ ArrayList tx = new ArrayList();
 
 boolean render = true;
 
+int siz = 64;
+
 void setup(){
-    size(1024,768,OPENGL);
+    size(800,450,P2D);
 
     complete = loadStrings("text.txt");
 
@@ -17,8 +19,8 @@ void setup(){
     }
 
 
-    font = createFont("Aller",92,true);
-    fill(255,127);
+    font = createFont("Aller",siz,true);
+    fill(255);
 }
 
 
@@ -65,7 +67,7 @@ class LineDisp{
         x = 0;
         
         for(int i = 0 ; i<tex.length() ; i++){
-            sizes[i] = noise((frameCount)/((int)tex.charAt(i)/2.0))*92; //noise(frameCount/80.0) * noise((frameCount)/(30.0+i)) * 32;
+            sizes[i] = noise((frameCount)/((int)tex.charAt(i)/2.0))*siz; //noise(frameCount/80.0) * noise((frameCount)/(30.0+i)) * 32;
             textFont(font,sizes[i]);
             x+=textWidth(tex.charAt(i));
         }
@@ -79,6 +81,7 @@ class LineDisp{
         x = 0;    
         for(int i = 0 ; i<tex.length() ; i++){
             textFont(font,sizes[i]);
+            fill(lerpColor(#ffcc00,#444444,map(tex.charAt(i),24,120,0,1)));
             text(tex.charAt(i),x,0);
             x+=textWidth(tex.charAt(i));
         }
