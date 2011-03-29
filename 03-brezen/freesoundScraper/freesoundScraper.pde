@@ -3,7 +3,7 @@ import codeanticode.gsvideo.*;
 
 //Minim minim;
 
-String query[] = {"talk","rain","storm","wind","doors","leafs"};//,"ring","phone"};
+String query[] = {"crowd","dog","sinewave"};//,"ring","phone"};
 FSScraper bank[];
 
 boolean useGS = true;
