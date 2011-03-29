@@ -1,7 +1,4 @@
-//import ddf.minim.*;
 import codeanticode.gsvideo.*;
-
-//Minim minim;
 
 String query[] = {"crowd","dog","sinewave"};//,"ring","phone"};
 FSScraper bank[];
@@ -17,15 +14,8 @@ void setup(){
 
     for(int i = 0;i<query.length;i++){
         bank[i] = (new FSScraper(this,query[i]));
-        //   println(e);
     }
-    /*
-    for(int i = 0;i<query.length;i++){
-        bank[i].pipe.play();// = (new FSScraper(this,query[i]));
-        //   println(e);
-    }*/
-
-
+    
 }
 
 void keyPressed(){
@@ -33,9 +23,7 @@ void keyPressed(){
 
     if(key == ' '){
         for(int i = 0;i<query.length;i++){
-            //bank[i].pipe.delete();
             bank[i].reload();
-            //bank[i].pipe.play();
         }
     }
     keyPressed = false;
@@ -46,29 +34,10 @@ void draw(){
 
 
     for(int i = 0 ;i<bank.length;i++){
-        //FreesoundScraper fs = (FreesoundScraper)bank.get(i);
         bank[i].draw();
     }
 
 }
-/*
-   void stop2(){
-// always close Minim audio classes when you are done with them
-for(int i = 0 ;i<bank.size();i++){
-FreesoundScraper fs = (FreesoundScraper)bank.get(i);
-
-AudioPlayer tmp = (AudioPlayer)fs.sample.get(0);
-try{
-tmp.close();
-}catch(Exception e){
-println(e);
-}
-}
-minim.stop();
-
-super.stop();
-}*/
-
 
 class FSScraper{
     String apiKey = "4daf76e033114821b7b686f955b86880";
@@ -124,29 +93,6 @@ class FSScraper{
         println("creating sample: "+query);
     }
 
-    /*
-       println(tmp.length);
-       for(int i = 0 ;i<tmp.length;i++){
-       println(tmp[i].getContent());
-       }
-
-       sample.add(minim.loadFile(tmp[(int)random(tmp.length)].getContent()));
-       AudioPlayer sam = (AudioPlayer)sample.get(0);
-       sam.loop();       
-
-
-
-       for(int i = 0 ;i<num;i++){
-
-       String pre = tmp[(int)random(tmp.length)].getContent();
-       sample.add(minim.loadSnippet(pre));
-       AudioSnippet sam = (AudioSnippet)sample.get(i);
-       sam.play();
-       }
-
-     */
-
-
     void play(){
         if(pipe!=null){
             pipe.play();
@@ -157,16 +103,7 @@ class FSScraper{
 
         if(pipe.time()>=pipe.duration()-0.4 && pipe.duration()>0)
             reload();
-
-    
     
     }
-    //println(query+" : "+pipe.time() + " / "+pipe.duration());
-    //if(pipe.time() >= pipe.duration()){
-    //    pipe = new GSPipeline(parent, "playbin uri="+url, GSVideo.AUDIO);
-    //pipe.goToBeginning();
-    //    pipe.play();
-    //}
-
 }
 
