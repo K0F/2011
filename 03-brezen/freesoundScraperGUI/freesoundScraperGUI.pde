@@ -48,9 +48,9 @@ void controlEvent(ControlEvent theEvent) {
 
     if(!theEvent.controller().stringValue().equals("")){
         bank.add(new FSScraper(this,theEvent.controller().stringValue()));
-        FSScraper tmp = (FSScraper)bank.get(bank.size()-1);
-        Thread loader = new Thread(tmp);
-        loader.run();
+        //        FSScraper tmp = (FSScraper)bank.get(bank.size()-1);
+        //        Thread loader = new Thread(tmp);
+        //        loader.run();
     }
 
 }
@@ -67,7 +67,7 @@ void draw(){
 
 }
 
-class FSScraper extends Thread{
+class FSScraper{
     String apiKey = "4daf76e033114821b7b686f955b86880";
     String query;
     PApplet parent;
@@ -84,8 +84,8 @@ class FSScraper extends Thread{
     FSScraper(PApplet _parent,String _query){ 
         id = bank.size();
         /*x = 10;
-        y = id*10+10;
-*/
+          y = id*10+10;
+         */
         query = _query;
         parent = _parent;
 
@@ -97,7 +97,7 @@ class FSScraper extends Thread{
            }
          */
 
-        //reload();
+        reload();
 
     }
 
@@ -111,7 +111,7 @@ class FSScraper extends Thread{
         }
     }
 
-    void run(){
+    void reload(){
         if(pipe!=null)
             pipe.delete();
 
@@ -126,10 +126,10 @@ class FSScraper extends Thread{
         pipe = new GSPipeline(parent, "gnomevfssrc location="+url+" ! mad ! audioconvert ! audioresample ! alsasink", GSVideo.AUDIO);
 
         if(pipe!=null){
-        pipe.play();
-        println("creating sample: "+query);
+            pipe.play();
+            println("creating sample: "+query);
         } 
-        
+
     }
 
     void play(){
@@ -145,12 +145,15 @@ class FSScraper extends Thread{
         fill(255,120);
         noStroke();
         try{
-        rect(x,y,map(pipe.time(),0,pipe.duration(),0,8*8),10);
-        text(query,x+8*8+10,y+10);
-        if(pipe.time()>=pipe.duration()-0.4 && pipe.duration()>0)
-            bank.remove(this);
+            rect(x,y,map(pipe.time(),0,pipe.duration(),0,8*8),10);
+            text(query,x+8*8+10,y+10);
+            if(pipe.time()>=pipe.duration()-0.4 && pipe.duration()>0.1){
+                pipe.delete();
+                bank.remove(this);
+            }
         }catch(Exception e){
-            bank.remove(this);
+            //pipe.delete();
+            //bank.remove(this);
         }
     }
 }
