@@ -1,6 +1,6 @@
 import codeanticode.gsvideo.*;
+import processing.xml.*;
 import controlP5.*;
-
 
 ControlP5 controlP5;
 
@@ -113,12 +113,12 @@ class FSScraper{
 
     void reload(){
         if(pipe!=null)
-            pipe.delete();
+            pipe.dispose();
 
         fading = false;
         String request = "http://tabasco.upf.edu/api/sounds/search?q="+query+"&api_key="+apiKey+"&format=xml";
         response = new XMLElement(parent,request);
-        numResults = response.getInt("num_results");
+        //numResults = response.getInt("num_results");
 
         XMLElement tmp[] = response.getChildren("sounds/resource/preview");
 
@@ -148,7 +148,7 @@ class FSScraper{
             rect(x,y,map(pipe.time(),0,pipe.duration(),0,8*8),10);
             text(query,x+8*8+10,y+10);
             if(pipe.time()>=pipe.duration()-0.4 && pipe.duration()>0.1){
-                pipe.delete();
+                pipe.dispose();
                 bank.remove(this);
             }
         }catch(Exception e){
