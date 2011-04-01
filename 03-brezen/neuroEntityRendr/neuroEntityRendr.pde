@@ -1,16 +1,18 @@
 // organism form params
-int chapadlaNum = 100;
-int chapadlaLen = 20;
-float chapadloPartLen = 10;
+int chapadlaNum = 300;
+int chapadlaLen = 80;
+float chapadloPartLen = 5;
 
-float smoothing1 = 2.0;
-float smoothing2 = 10.0;
+float smoothing1 = 4.0;
+float smoothing2 = 30.0;
 
 //show entrie neural structure
-boolean showNet = true;
+boolean showNet = false;
 
 //resolution of a neural structure
 float res = 5.0;
+
+boolean cones = true;
 
 
 boolean control = false;
@@ -24,9 +26,9 @@ float rate = 0.1;
 // jitter on synapses
 float jitter = 0.0;
 // average interconnection between neurons
-int avgConnections = 2;
+int avgConnections = 3;
 // change connection in net every N frame
-int changeIndexRate = 100;
+int changeIndexRate = 50;
 
 float avg = 1.0;
 
@@ -42,10 +44,11 @@ int Y = 0;
 
 
 void setup(){
-    size(400,300,P2D);
+    size(800,480,P2D);
     noStroke();
     
     randomSeed(19);
+    smooth();
     
     restart();
 }
@@ -80,15 +83,22 @@ void draw(){
     }   
     
     // draw entity hand by hand reacting on the structure
+    
     for(int i = 0;i< hand.size();i++){
+        
         Hand tmp = (Hand)hand.get(i);
+        
         tmp.draw();
         
         //set its global position
         tmp.setXY(blobX,blobY);
-    }   
+      }
     
-
+    
+    saveFrame("/desk/npusCones/npus####.png");
+    
+    if(frameCount == 752)
+    exit();
 }
 
 

@@ -9,7 +9,7 @@ class Neuron{
     float dir = 1.0;
     float innerRate;
     boolean change = false;
-    int cnt = 5;
+    int cnt = 3;
 
     Neuron(int _id,int _ins){
 
@@ -73,7 +73,7 @@ class Neuron{
         if(frameCount%changeIndexRate==0){
           shiftIndex();
           change = true;  
-          cnt = 5;
+          cnt = 3;
         }
         
         if(change){

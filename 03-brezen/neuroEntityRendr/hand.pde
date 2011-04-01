@@ -26,12 +26,15 @@ class Hand {
     //rotate(radians(-90));
     for(int i =0;i<bones.size();i++) {
       Bone tmp = (Bone)bones.get(i);
+      
+      fill(0,40);
       if(id == 0)
       fill(#ff1111,map(i,0,bones.size(),0,120));
-      
-      else
+       else
       fill(255,map(i,0,bones.size(),0,120));
+      
       tmp.draw();
+      tmp.move();
     }
     popMatrix();
     /* 
@@ -73,11 +76,32 @@ class Bone {
   void draw() {
     angle += (parseNeurons()-angle)/smoothing2;
     rotate(radians(angle));
-
+    
+    if(cones)
+    {
+    pushStyle();
+    if(id == chapadlaLen-1){
+    fill(#CCFF11,5);
+    for(int i = 50 ;i<70;i+=2)
+      triangle(0,0,100+i,i,100+i,-i); 
+    }
+    popStyle();
+    }
+    pushStyle();
+    fill(0,map(id,0,len,0,255));
+    
+    rect(0,-thickness,len,thickness*2);
+    for(int i = 2;i<14;i+=2){
+    fill(0,20);
+    rect(0,-thickness-i/2,len,thickness*2+i);
+    }
+    popStyle();
+    
     rect(0,-thickness/2.0,len,thickness);
+    
     translate(len,0);
 
-    move();
+    
   }
 
   void move() {
