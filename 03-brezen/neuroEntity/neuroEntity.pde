@@ -1,9 +1,9 @@
 // organism form params
-int chapadlaNum = 100;
-int chapadlaLen = 20;
-float chapadloPartLen = 10;
+int chapadlaNum = 10;
+int chapadlaLen = 80;
+float chapadloPartLen = 5;
 
-float smoothing1 = 2.0;
+float smoothing1 = 4.0;
 float smoothing2 = 10.0;
 
 //show entrie neural structure
@@ -22,11 +22,11 @@ float blobX,blobY;
 // rate of change
 float rate = 0.1;
 // jitter on synapses
-float jitter = 0.0;
+float jitter = 0;
 // average interconnection between neurons
 int avgConnections = 2;
 // change connection in net every N frame
-int changeIndexRate = 100;
+int changeIndexRate = 10000;
 
 float avg = 1.0;
 
@@ -47,6 +47,7 @@ void setup(){
     
     randomSeed(19);
     
+        
     restart();
 }
 
