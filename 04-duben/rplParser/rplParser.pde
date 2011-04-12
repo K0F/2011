@@ -1,10 +1,10 @@
-//
 import peasy.*;
 import processing.opengl.*;
 
 
-String filename = "SoKoBaN_vs_uke-28731_3803.rpl";
+String filename = "Angelman18_vs_bbeh9898-0_0.rpl";
 
+int time;
 
 float sc = 30;
 Figure one,two;
@@ -43,7 +43,13 @@ void draw(){
 
 class Figure{
     ArrayList pos = new ArrayList();
+    ArrayList qat = new ArrayList();
+    ArrayList linvel = new ArrayList();
+    ArrayList angvel = new ArrayList();
+    ArrayList keyframes = new ArrayList();
+
     ArrayList poses = new ArrayList();
+    
     String raw[];
     int phase = 0;
     int id;
@@ -56,45 +62,104 @@ class Figure{
         int cnt = 0;
         for(int i  = 0 ;i<raw.length;i++){
             if(raw[i]!=null){
+                        String name = splitTokens(raw[i],";")[0];
+                        boolean newdata = false;
 
-                if(splitTokens(raw[i],";")[0].equals("POS "+id)){
-                    String positions = splitTokens(raw[i],";")[1];
-                    String p[] = splitTokens(positions," ");
-                    pos = new ArrayList();
-                    for(int ii = 0;ii < p.length-3;ii+=3){
+
+
+                        if(name.equals("FRAME "+id)){
+                        String positions = splitTokens(raw[i],";")[1];
+                        keyframes = new ArrayList();
+                        keyframes.add((int)parseInt(positions) );
+                        cnt = pos.size();
+                        newdata = true;
+                        }else if(name.equals("POS "+id)){
+                        String positions = splitTokens(raw[i],";")[1];
+                        String p[] = splitTokens(positions," ");
+                        pos = new ArrayList();
+                        for(int ii = 0;ii < p.length-2;ii+=3){
                         pos.add(
-                                new Point(pos.size(),(float)parseFloat(p[ii])*sc,(float)parseFloat(p[ii+1])*sc,(float)parseFloat(p[ii+2])*sc)
-                               );
-                    cnt = pos.size();
-                    }
-                    poses.add(new Pose(pos));
-                     println(id + " : "+cnt);
-                }
+                            new Point(pos.size(),(float)parseFloat(p[ii])*sc,(float)parseFloat(p[ii+1])*sc,(float)parseFloat(p[ii+2])*sc)
+                            );
+                        cnt = pos.size();
+                        }
+                        newdata = true;
+                        }else if( name.equals("QAT "+id) ){
+                        String positions = splitTokens(raw[i],";")[1];
+                        String p[] = splitTokens(positions," ");
+                        qat = new ArrayList();
+                        for(int ii = 3;ii < p.length;ii+=4){
+                        
+                        qat.add(
+                            new Point(qat.size(),(float)parseFloat(p[ii-2])*(float)parseFloat(p[ii-3]),(float)parseFloat(p[ii-1])*(float)parseFloat(p[ii-3]),(float)parseFloat(p[ii])*(float)parseFloat(p[ii-3]))
+                            );
+
+                        cnt = qat.size();
+                        }
+                        newdata = true;
+
+
+                        }else if( name.equals("LINGVEL "+id) ){
+                            String positions = splitTokens(raw[i],";")[1];
+                            String p[] = splitTokens(positions," ");
+                            linvel = new ArrayList();
+                            for(int ii = 0;ii < p.length-2;ii+=3){
+                                linvel.add(
+                                        new Point(linvel.size(),(float)parseFloat(p[ii])*sc,(float)parseFloat(p[ii+1])*sc,(float)parseFloat(p[ii+2])*sc)
+                                        );
+                                cnt = linvel.size();
+                            }
+                            newdata = true;
+
+                        }else if( name.equals("ANGVEL "+id) ){
+                            String positions = splitTokens(raw[i],";")[1];
+                            String p[] = splitTokens(positions," ");
+                            angvel = new ArrayList();
+                            for(int ii = 0;ii < p.length-2;ii+=3){
+                                angvel.add(
+                                        new Point(angvel.size(),(float)parseFloat(p[ii])*sc,(float)parseFloat(p[ii+1])*sc,(float)parseFloat(p[ii+2])*sc)
+                                        );
+                                cnt = angvel.size();
+                            }
+                            newdata = true;
+                        }
+
+                        if(newdata) 
+                            poses.add(new Pose(pos,qat,linvel,angvel));
 
             }
 
         }
 
-        //println(id + " : "+cnt);
-
     }
 
     void draw(){
 
-        if(frameCount%10==0)
-            phase ++;
+        int lastframe = (Integer)keyframes.get(keyframes.size()-1);
+        time += 1;
+        if(time>lastframe)
+            time = 0;
 
-        if(phase >= poses.size())
-            phase = 0;
+        for(int i = 0;i<keyframes.size();i++){
+            int currframe = (Integer)keyframes.get(i);
+            if(time==currframe){
+                phase = i;
+            }
 
+
+        }
 
         Pose pose = (Pose)poses.get(phase);
-        pos = pose.points;
+        pos = pose.pos;
 
         for(int i = 0 ;i<pos.size();i++){
             pushMatrix();
             Point tmp = (Point)pos.get(i);
+            Point rot = (Point)qat.get(i);
             translate(tmp.x,tmp.y,tmp.z);
+            rotateX((HALF_PI+rot.x)*TWO_PI);
+            rotateY((HALF_PI+rot.y)*TWO_PI);
+            rotateZ((HALF_PI+rot.z)*TWO_PI);
             box(5);
             //line(0,-0.01,0,0,0.01,0);
             popMatrix();
@@ -119,9 +184,15 @@ class Point{
 }
 
 class Pose{
-    ArrayList points;
+    ArrayList pos;
+    ArrayList qat;
+    ArrayList linvel;
+    ArrayList angvel;
 
-    Pose(ArrayList al){
-        points = al;
+    Pose(ArrayList _pos,ArrayList _qat,ArrayList _linvel, ArrayList _angvel){
+        pos = _pos;
+        qat = _qat;
+        linvel = _linvel;
+        angvel = _angvel;
     }
 }

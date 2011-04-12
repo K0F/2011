@@ -83,19 +83,9 @@ class FSScraper{
 
     FSScraper(PApplet _parent,String _query){ 
         id = bank.size();
-        /*x = 10;
-          y = id*10+10;
-         */
+        
         query = _query;
         parent = _parent;
-
-        /*
-           X+=query.length()*8;
-           if(X>width){
-           X = 0;
-           Y += 15;
-           }
-         */
 
         reload();
 
