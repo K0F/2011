@@ -32,9 +32,13 @@ class Hand {
       else
       fill(map(i,0,bones.size(),0,120));
       tmp.draw();
+    
     }
     popMatrix();
-    /* 
+    x = blobX;
+    y = blobY;
+    
+     /*
      stroke(#ffcc00,10);
      for(int i =0;i<bones.size();i++) {
      Bone tmp = (Bone)bones.get(i);
@@ -90,15 +94,18 @@ class Bone {
   }
 
   void move() {
-    if(id == len-1) {
+    if(id == len-2) {
       float posx = screenX(0,0);
       float posy = screenY(0,0);
 
-      if(posx > width || posx < 0)
-      blobX -= (posx-blobX)/2.0;//(dist(posx,posy,blobX,blobY));
+     // if(posx > width || posx < 0)
+      blobX -= (posx-blobX)/1000.5;//(dist(posx,posy,blobX,blobY));
       
-      if(posy > height || posy < 0)
-      blobY -= (posy-blobY)/2.0;//(dist(posx,posy,blobX,blobY));
+     // if(posy > height || posy < 0)
+      blobY -= (posy-blobY)/1000.5;//(dist(posx,posy,blobX,blobY));
+
+   // parent.x = blobX;
+   // parent.y = blobY;
     }
   }
 

@@ -2,14 +2,12 @@ import peasy.*;
 import processing.opengl.*;
 
 
-String filename = "Angelman18_vs_bbeh9898-0_0.rpl";
+String filename = "MattoMatto_vs_SoKoBaN-31380_25401.rpl";
 
 int time;
 
 float sc = 30;
 Figure one,two;
-
-
 
 void setup(){
     size(800,600,OPENGL);
@@ -25,8 +23,6 @@ void setup(){
     stroke(255);
     noFill();
 }
-
-
 
 void draw(){
     rotateX(-.5);
@@ -64,7 +60,6 @@ class Figure{
             if(raw[i]!=null){
                         String name = splitTokens(raw[i],";")[0];
                         boolean newdata = false;
-
 
 
                         if(name.equals("FRAME "+id)){
@@ -145,8 +140,6 @@ class Figure{
             if(time==currframe){
                 phase = i;
             }
-
-
         }
 
         Pose pose = (Pose)poses.get(phase);
@@ -163,11 +156,8 @@ class Figure{
             box(5);
             //line(0,-0.01,0,0,0.01,0);
             popMatrix();
-
         }
     }
-
-
 }
 
 class Point{
@@ -180,7 +170,6 @@ class Point{
         y = _y;
         z = _z;
     }
-
 }
 
 class Pose{

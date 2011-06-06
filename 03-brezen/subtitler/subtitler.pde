@@ -22,7 +22,7 @@ void setup(){
 	textFont(createFont("Verdana",9,false));
 	textMode(SCREEN);
 
-	raw = loadStrings("test.srt");
+	raw = loadStrings("jiri.srt");
 	parseFile();
 
 
@@ -33,7 +33,7 @@ void setup(){
 	}
 
 
-	movie = new GSMovie(this,"SP2.mpg");
+	movie = new GSMovie(this,"KurtKren.avi");
 	movie.play();
 	movie.volume(0);
 

@@ -112,7 +112,7 @@ class Neuron{
       if(change)
       fill(#ff1111,val*40);
       else
-        fill(dist(blobX,blobY,x,y)/3.0-50*val);
+        fill(val*127,255-dist(blobX,blobY,x,y)*2);
         rect(x,y,res,res);
     }
 }
