@@ -1,0 +1,19 @@
+syntax "processing" "\.pde$"
+color green "\<(boolean|byte|char|double|float|int|long|new|short|this|color|transient|void)\>"
+color red "\<(break|case|catch|continue|default|do|else|finally|for|if|return|switch|throw|try|while|frameCount|SCREEN|screen|CENTER|MODEL|LEFT|RIGHT|UP|DOWN|ENTER|DELETE|BACKSPACE)\>"
+color cyan "\<(abstract|class|extends|final|implements|import|instanceof|interface|native|package|private|protected|public|static|strictfp|super|synchronized|throws|volatile)\>"
+color yellow "\<(abs|acos|alpha|ambient|ambientLight|append|applyMatrix|arc|arrayCopy|asin|atan2|atan|background|beginCamera|beginRaw|beginRecord|beginShape|bezierDetail|bezier|bezierPoint|bezierTangent|bezierVertex|binary|blendColor|blend|blue|box|brightness|camera|ceil|colorMode|compare|concat|constrain|copy|cos|createFont|createGraphics|createImage|createInput|createOutput|createReader|createWriter|css|cursor|curveDetail|curve|curvePoint|curveTangent|curveTightness|curveVertex|day|degrees|delay|directionalLight|dist|ellipse|ellipseMode|emissive|endCamera|endRaw|endRecord|endShape|environment|height|expand|exp|extends|fill|filter|floor|frameRate|frustum|get|green|hex|hint|hour|hue|image|imageMode|images|img|join|key|keyTyped|lerpColor|lerp|lightFalloff|lights|lightSpecular|line|link|loadBytes|loadFont|loadImage|loadPixels|loadShape|loadStrings|log|loop|mag|map|matchAll|match|max|media|millis|min|minute|modelX|modelY|modelZ|month|mouseX|mouseY|nfc|nf|nfp|nfs|noCursor|noFill|noiseDetail|noise|noiseSeed|noLights|noLoop|normal|norm|noSmooth|noStroke|noTint|open|ortho|param|perspective|PFont|PGraphics|beginDraw|PGraphics|endDraw|PGraphics|PI|PImage|blend|copy|filter|get|mask|resize|save|set|pixels|pmouseX|pmouseY|point|pointLight|popMatrix|popStyle|pow|printCamera|print|println|printMatrix|printProjection|PrintWriter|close|flush|print|println|PShape|disableStyle|enableStyle|getChild|getHeight|getWidth|isVisible|resetMatrix|rotate|rotateX|rotateY|rotateZ|scale|setVisible|translate|pushMatrix|pushStyle|PVector|add|angleBetween|quad|radians|random|randomSeed|rect|rectMode|red|redraw|requestImage|resetMatrix|return|reverse|rotate|rotateX|rotateY|rotateZ|round|saturation|saveBytes|saveFrame|save|saveStream|saveStrings|scale|screenX|screenY|screenZ|second|selectFolder|selectInput|selectOutput|set|shape|shapeMode|shininess|shorten|sin|size|smooth|sort|specular|sphereDetail|sphere|splice|split|splitTokens|spotLight|sq|sqrt|status|str|String|charAt|equals|indexOf|length|substring|toLowerCase|toUpperCase|strokeCap|stroke|strokeJoin|strokeWeight|subset|subtractassign|super|switch|tan|textAlign|textAscent|textDescent|textFont|text|textLeading|textMode|textSize|texture|textureMode|textWidth|tint|translate|triangle|trim|troubleshooting|TWO_PI|unbinary|unhex|updatePixels|vertex|width|getChildCount|getChild|getChildren|getContent|getFloatAttribute|getIntAttribute|getName|getStringAttribute|year)\>"
+color red ""[^"]*""
+color brightred "'[^']*'"
+color white "\<(true|false|null|\.;$)\>"
+color brightyellow "\<(draw|setup|init|keyPressed|keyReleased|mousePressed|mouseClicked|mouseDragged|mouseMoved|mouseReleased|exit)\>" 
+color blue "//.*"
+color blue start="/\*" end="\*/"
+color brightblue start="/\*\*" end="\*/"
+#color green "[[:space:]]+$"
+
+set autoindent
+set const
+set cut
+set noconvert
+
