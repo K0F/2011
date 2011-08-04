@@ -4,8 +4,8 @@ float percent ;
 String katalog = "cyphernomicon.txt";
 String filters = " 	(){}[];,+-&*^%/=<>.\r\n\'\":|`!?";
 
-ArrayList <String> words = new ArrayList<String>(0);
-ArrayList <Ent> ent = new ArrayList<Ent>(0);
+ArrayList words = new ArrayList(0);
+ArrayList ent = new ArrayList(0);
 
 Runnable runnable;
 Thread thread;
