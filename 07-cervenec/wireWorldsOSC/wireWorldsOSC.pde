@@ -18,13 +18,11 @@
  */
 
 
-
-
-
 //import codeanticode.gsvideo.*;
 import netP5.*;
 import oscP5.*;
 
+////////////////////////////////////////////////
 
 boolean staticImage = true;
 
@@ -35,6 +33,8 @@ int plochaY = 700;
 //GSMovieMaker mm;
 OSC osc;
 Receiver rece[] = new Receiver[0];
+
+////////////////////////////////////////////////
 
 int X, Y;
 int SID = 0;
@@ -47,6 +47,8 @@ boolean receive = true;
 int top = 4;
 int numx = plochaX/top,numy = plochaY/top;
 
+////////////////////////////////////////////////
+
 ArrayList c = new ArrayList();//Cell[numx*top][numy*top];
 color col[] = {color(0),color(50),color(120),color(255)};
 
@@ -56,6 +58,8 @@ int scaler = 1;
 String filename;
 
 boolean somecells = false;
+
+/////////////////////////////////////////////
 
 void setup(){
     size(plochaX,plochaY,P2D);
@@ -68,34 +72,17 @@ void setup(){
     frameRate(25);
 
     loadStateFromImage();
-    /*
-       for(int y=0;y<c[0].length;y++){
-       for(int x=0;x<c.length;x++){
-
-       if()
-       c[x][y] = new Cell(x,y);
-       }
-       }
-     */
-    /*if(rec){
-      mm = new GSMovieMaker(this,width,height,"out/out.avi",GSMovieMaker.X264,GSMovieMaker.BEST,25);
-      mm.start();
-      }*/
-
-
-    //for(int x=0;x<c.length;x++){
-    //	c[x][30].state=1;
-    //}
-
     noStroke();
-
 
 }
 
+//////////////////////////////////////////
 
 void initOSC(){
     osc = new OSC("127.0.0.1",12000);
 }
+
+//////////////////////////////////////////
 
 void loadState(){
     try{
@@ -113,6 +100,8 @@ void loadState(){
     println("machine loaded: "+filename+".txt");
 }
 
+//////////////////////////////////////////
+
 void saveState(){
 
     String data[] = new String[0];
@@ -129,7 +118,7 @@ void saveState(){
     println("saved as: "+filename+".txt");
 }
 
-
+///////////////////////////////////////////
 
 class Cell{
     int x,y,id;
@@ -143,6 +132,8 @@ class Cell{
 
 }
 
+//////////////////////////////////////////
+
 void loadStateFromImage(){
 
     if(emit)
@@ -150,7 +141,7 @@ void loadStateFromImage(){
     try{
         PImage temp = loadImage(filename);
 
-        //if(temp.width==c.length&&temp.height==c[0].length){
+        // if(temp.width==c.length&&temp.height==c[0].length){
 
         c = new ArrayList();
 
@@ -163,44 +154,12 @@ void loadStateFromImage(){
                     c.add(new Cell(cntr,x,y));
                 }
 
-
-                /*
-                   c[x][y] = new Cell(x,y);
-
-                   if((brightness(color(temp.pixels[y*temp.width+x]))) == 255){
-                   c[x][y].state=1;
-                   }else if((red(color(temp.pixels[y*temp.width+x]))) == 146){
-            //println( red(temp.pixels[y*temp.width+x]) );
-
-
-            c[x][y].state=1;
-            c[x][y].hasRece=true;
-
-            rece = (Receiver[])expand(rece,rece.length+1);
-            rece[rece.length-1] = new Receiver(x,y,rece.length-1);
-
-            //println("got red no. "+(rece.length-1)+" on "+x+" : "+y);
-
-            }else if((red(color(temp.pixels[y*temp.width+x]))) == 223){
-            c[x][y].state=1;
-            c[x][y].hasSenzor = true;
-            //println( (red(color(temp.pixels[y*temp.width+x]))) );
-            }else{
-            c[x][y].state=0;
-            }*/
-            }
-        }
-
-        println("state loaded sucessfully from: "+filename+".bmp");
-
-        /*}else{
-          println("error: stored values does not correpondent to dimensions");
-          }*/
-
     }catch(NullPointerException e){
         println("error: saved record does not found " +e);
     }
 }
+
+////////////////////////////////////////////////
 
 void saveStateToImage(){
     PImage temp = createImage(c.length,c[0].length,RGB);
@@ -214,6 +173,8 @@ void saveStateToImage(){
     temp.save(filename+".bmp");
     println("state saved as image: "+filename+".bmp");
 }
+
+////////////////////////////////////////////////
 
 void draw(){
     background(0);
@@ -254,9 +215,9 @@ void draw(){
             mousePressed=false;
         }
     }
-
-
 }
+
+//////////////////////////////////////////////////
 
 void keyPressed(){
     if(key==' '){
@@ -318,6 +279,8 @@ void keyPressed(){
     keyPressed=false;
 }
 
+/////////////////////////////////////////////
+
 void step(int n){
     boolean anim = false;
     for(int y=0;y<c[0].length;y++){
@@ -346,6 +309,8 @@ void step(int n){
     }
 }
 
+///////////////////////////////////////////
+
 class Senzor{
     int id;
     float freq;
@@ -355,6 +320,8 @@ class Senzor{
         freq = ceil(random(10))*16;
     }
 }
+
+////////////////////////////////////////////
 
 class Receiver{
     int id;
@@ -382,6 +349,8 @@ class Cell{
         y=_y;
     }
 
+    ///////////////////////////////////////////////
+
     void act(){
         compute();
 
@@ -393,6 +362,8 @@ class Cell{
             osc.send(s.id);
         }
     }
+
+    ////////////////////////////////////////////////
 
     void draw(){
 
@@ -407,7 +378,6 @@ class Cell{
                 else
                     fill(col[state]);
             }
-
             rect(x*scaler,y*scaler,scaler,scaler);
         }
 
@@ -421,6 +391,8 @@ class Cell{
 
 
     }
+
+    ///////////////////////////////////////////////////
 
     void compute(){
 
@@ -446,9 +418,13 @@ class Cell{
 
     }
 
+    ///////////////////////////////////////////////////
+
     void update(){
         state=nextState;
     }
+
+    ///////////////////////////////////////////////////
 
     int getStates(int wh){
         int cnt = 0;
@@ -466,6 +442,8 @@ class Cell{
 
     }
 
+    ///////////////////////////////////////////////////
+
     void calm(){
 
         if(state>0){
@@ -475,6 +453,8 @@ class Cell{
 
     }
 }
+
+///////////////////////////////////////////////
 
 class OSC{
     OscP5 osc;
@@ -498,11 +478,8 @@ class OSC{
         message.add(_whatX);
         //message.add("y ");
         message.add(_whatY);
-
         message.add(_whatZ);
         osc.send(message, addr);
-
-
     }
 
     //////////////////////////////////////////////////////////
@@ -545,8 +522,6 @@ class OSC{
             c[rece[tmp].x][rece[tmp].y].state = 3;
         }
         //println("/impulse");
-
-
 
         //print("### received an osc message.");
         //print(" addrpattern: "+theOscMessage.addrPattern());
