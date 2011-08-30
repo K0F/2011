@@ -1,0 +1,10 @@
+editor drone
+window -200.461 -989.788 2348.1 920.828
+win_chunk 100 75
+obj_chunk 0.05 0.1
+snap 3
+win_resolution 1
+carry_tangents 1
+mirror_tangents 0
+sine_enabled 1
+label_vertex 0

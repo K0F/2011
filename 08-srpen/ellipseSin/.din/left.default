@@ -1,0 +1,10 @@
+name L
+num_vertices 2
+vertex 0 0
+left_tangent -0.1 0
+right_tangent 0.1 0
+vertex 1 1
+left_tangent 0.9 1
+right_tangent 1.1 1
+curve_resolution 0.0003333
+color 1 0 0

@@ -1,0 +1,6 @@
+#!/bin/sh
+echo "resetting mouse"
+ACCEL=`xset q | grep accel | cut -d' ' -f5 |cut -d'/' -f1`
+THRESHOLD=`xset q | grep thres | cut -d' ' -f11`
+xset m 0 0
+echo `xset q | grep accel`

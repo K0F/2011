@@ -7,9 +7,9 @@ PGraphicsOpenGL pgl; //need to use this to stop screen tearing
 GL gl;
 
 void setup(){
-    size(1600,900,OPENGL);
+    size(1280,720,OPENGL);
 
-    frameRate(90);
+    frameRate(25);
 
     pgl = (PGraphicsOpenGL) g; //processing graphics object
     gl = pgl.beginGL(); //begin opengl
@@ -71,5 +71,12 @@ void draw(){
 
         popMatrix();
 
+
+
+        if(frameCount<=9750){
+        saveFrame("/desk/breathe/br#####.png");
+        }else{
+            exit();
+        }
     }
 }

@@ -1,0 +1,10 @@
+editor font
+window -524.292 -471.242 910.046 604.509
+win_chunk 50 50
+obj_chunk 1 1
+snap 3
+win_resolution 1
+carry_tangents 0
+mirror_tangents 1
+sine_enabled 0
+label_vertex 0

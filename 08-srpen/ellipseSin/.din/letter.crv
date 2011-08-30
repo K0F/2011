@@ -1,0 +1,13 @@
+name letter
+num_vertices 3
+vertex 0.55 0
+left_tangent 0.55 0
+right_tangent 0.55 0
+vertex 0.55 0
+left_tangent 0.55 0
+right_tangent 0.55 0
+vertex 0.7 0
+left_tangent 0.7 0
+right_tangent 0.7 0
+curve_resolution 0.000333308
+color 0 1 1

@@ -1,0 +1,10 @@
+editor waveform
+window -400.706 -1548.84 4341.07 2007.51
+win_chunk 169 123
+obj_chunk 0.05 0.1
+snap 0
+win_resolution 1
+carry_tangents 1
+mirror_tangents 0
+sine_enabled 1
+label_vertex 0

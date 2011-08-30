@@ -1,0 +1,10 @@
+app_name din-1.6.6
+screen 640 480
+intervals_file et.tuning
+scale minor
+keyboard_location 0 150
+key_height 350
+num_microtones 160
+handle_size 10
+
+// comments here only

@@ -1,0 +1,16 @@
+name drone
+num_vertices 4
+vertex 0 0
+left_tangent 0 0
+right_tangent 0.0305722 0.176527
+vertex 0.25 1
+left_tangent 0.144441 1.01713
+right_tangent 0.431242 0.994681
+vertex 0.75 -1
+left_tangent 0.569786 -1
+right_tangent 0.858195 -1
+vertex 1 0
+left_tangent 0.962375 -0.212622
+right_tangent 1 0
+curve_resolution 0.000333308
+color 0 0.7 0.7

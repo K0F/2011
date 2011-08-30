@@ -1,0 +1,10 @@
+editor compressor
+window -2846.62 -2297.35 3919.66 2777.35
+win_chunk 100 100
+obj_chunk 0.05 0.05
+snap 3
+win_resolution 1
+carry_tangents 1
+mirror_tangents 0
+sine_enabled 0
+label_vertex 0
