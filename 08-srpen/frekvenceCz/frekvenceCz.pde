@@ -1,6 +1,6 @@
 /**
   *  Czech Korpus frequency text analysis
-  *     by kof 2011
+  *  by kof 2011
 */
 
 
@@ -45,30 +45,22 @@ void draw(){
     background(0);
     //visual.draw();
 
-
     //default pozice
 
     int x = 20;
     int y = 20;
-
 
     // conter na procenta
 
     int zbyva = 0;
     for(int i = 0 ; i < text.size();i++){
         float val = (Float)vals.get(i);
-
         if(val==0){
-
             zbyva ++;
-
         }
-
     }
 
     float procent = 100-(zbyva/(text.size()+0.0))*100;
-
-
 
     // samotna smycka skrze slova
 
@@ -79,13 +71,8 @@ void draw(){
         float val = (Float)vals.get(i);
         boolean hit = false;
 
-
-
-
         // analyza
         if(val==0 && procent < 96.5){
-
-
 
             // prvnich 45% nejbeznejsich slov dat z prvni
             if( procent < 45.0 )
@@ -96,9 +83,7 @@ void draw(){
                         val = curr.no;
                         hit = true;
                         break;
-
                     }
-
                 }
 
 
@@ -112,7 +97,6 @@ void draw(){
                         hit = true;
                         break;
                     }
-
                 }
 
             // jestli trefa zaznamenej
@@ -121,7 +105,6 @@ void draw(){
 
             // nejbizarnejsi slovo v textu :)
             mx = max(mx,val);
-
 
             //default barva pri hledani
             fill(#caca00);
@@ -132,7 +115,6 @@ void draw(){
             fill(lerpColor(#00ff00,#ff0000,map(val,0,mx,0.45,1)));
         }
 
-
         // sirka slova
         float tw = textWidth(slovo+" ");
 
@@ -141,8 +123,6 @@ void draw(){
             x = 20;
             y += 11;
         }
-
-
             
         // selekce v nezvyklosti slov
         if(map(val,0,mx,0,width) > mouseX){
@@ -160,23 +140,18 @@ void draw(){
         x += tw;
     }
 
-
     // dolni ukazatel procesu
     fill(255);
     text(procent+"% slov nalezeno v korpusu",10,height-10);
-
 }
-
 
 // nacita vzorek txt a prevadi do AL, Word
 
 ArrayList nactiVzorek(String _filename){
 
-
     String[] rw = loadStrings(_filename);
 
     ArrayList _vzorek =  new ArrayList();
-
 
     int cnt = 0;
 
@@ -191,7 +166,6 @@ ArrayList nactiVzorek(String _filename){
     }
 
     return _vzorek;
-
 }
 
 // korpus parser
@@ -207,7 +181,6 @@ ArrayList parse(String _filename){
 
     ArrayList _words = new ArrayList();
 
-
     println(raw[0]);
 
     int cnt = 0;
@@ -217,14 +190,10 @@ ArrayList parse(String _filename){
         if(data.length==7){
             cnt++;
             _words.add(new Word(parseInt(data[0]),data[1]));
-
         }else if(data.length==6){
-
             cnt++;
             _words.add(new Word(cnt,data[0]));
-
         }
-
     }
 
     println(cnt+" words loaded");
@@ -251,5 +220,4 @@ class Banka{
     Banka(ArrayList _w){
         w = _w;
     }
-
 }
