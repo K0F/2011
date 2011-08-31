@@ -32,6 +32,8 @@ void setup(){
     textFont(createFont("Sans",9,false));
     textMode(SCREEN);
 
+
+    smooth();
     fill(255);
     noStroke();
 }
@@ -81,7 +83,7 @@ void draw(){
 
 
         // analyza
-        if(val==0 && procent < 93.5){
+        if(val==0 && procent < 96.5){
 
 
 
@@ -145,7 +147,7 @@ void draw(){
         // selekce v nezvyklosti slov
         if(map(val,0,mx,0,width) > mouseX){
             text(slovo,x,y+height/2);
-            stroke(255,25);
+            stroke(255,15);
             line(x+tw / 2.0 - 2 , height / 2 + y - 2 , map(val,0,mx,0,width),height/2);
             noStroke();
         }

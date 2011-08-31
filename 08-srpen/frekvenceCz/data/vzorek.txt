@@ -1,15 +1,113 @@
-Patřím k lidem, kteří by v televizi i v denním tisku přivítali nějaké povzbudivé zprávy, třeba o tom, že byl v Turecku výkup fíků splněn na 110%, že byl dán na trh nový lék, které léčí Alzheimerovu, Parkinsonovu, Lou Gehrigovu i Huntingtonovu chorobu, nebo že bylo zajištěno trvalé ubytování pro všechny bezdomovce a těm nemocným byla poskytnuta zdravotní péče. Naději mám jen na fíky.
+     ... Má snaha provést začínající i středně pokročilé uživatele jazykem bude vždy nezbytně ne-
+dostatečná, berte ji prosím spíše než-li za všeobjímající text, za průvodce nesnadnými začátky.
+      Čtete-li knihu z jiných důvodů než učení se tajům programovacích jazyků, pokusím se text
+knihy proložit sčetnými poznatky nabytými moji několikaletou zkušeností sdílení života se stroji.
+      Dostala-li se vám tato kniha do rukou prostou náhodou, to je mi líto, jste zřejmně systémovým
+omylem a věru netuším, co v ni dále najdete, a proto bych i Vás rád pobídl alespon k začtení se
+do světa odtřženého od všednosti, do světa skriptů a kódů.
+1.1 Jednoduchost jazyka
+Snaha po spřístupnění programování jako takového širší veřejnosti dala vzniknout rodině jazyků,
+které jsou patřičně zjednodušeny tak aby je mohli obsluhovat i neodborníci. Výchozím bodem
+pro zjednodušení programování je odpověd na situaci, kdy programovací jazyky vytvářeli lidé
+se zvláštním nadáním pro ryze technické uvažování. Technické uvažování je speciální schop-
+nost, pro kterou nemá každý člověk správné predispozice. Současně programování v současnosti
+znamená určitý stupen širší svobody při komunikaci se strojem. K míře svobody, která má své
+silné kritiky1 , se nyní nechci vyjadřovat, ale zjednodušeně z pouhého uživatele, který používá
+daný nástroj, schopnost programování z tohoto uživatele činí potencionálního strůjce vlastních
+nástrojů.
+      Hovořím-li o stroji mám dnes na mysli počítač. Termín stroj používám záměrně pro zdůraznění
+jisté formy strojového přemýšlení v historickém kontextu.
+      Nástroje jsou pak programy zkonstrouvané pro jistou činnost. Obvykle je nástroj vyvíjen
+za jedním účelem, který plní uživatelsky co nejpřivětivější cestou. Tato cesta je pro uživatele
+snadno schůdná a nabízí mu standartní škálu dovedností nástroje. Aniž bychom si toto přiliž
+uvědomovali, současná vizuální kultura je ovlivněna těmito nástroji daleko více než je na první
+pohled patrné. A technické možnosti jsou současným tržním hladem pro inovaci konfiskovány
+a proměnovány ve zboží. V této situaci je důležité znát nástroje i jejich vznik pro reflexi nebo
+kritiku v širších souvislostech.
+      Tato kniha je spíše než-li jednomu nástroji věnována programu pro tvorbu takových nástrojů.
+Jak již vyplývá z této definice použití Processingu není limitováno jen úhlem pohledu autora
+    1
+      včetně mne samotného
+                                                   1
+tohoto textu. Návod by se měl stát spíše pobídkou k co nejrozmanitější tvorbě vlastních nástrojů,
+sloužících opět pokudmožno k co možná neširší škále možných účelů.
+    Processing vychází z koncepce snadného přístupu k programování. Za běžných okolností by
+se vnímavý člověk měl být schopen naučit jednoduché struktuře programu a schopnosti vytvořit
+vlastní program v průběhu několika dní. Na druhou stranu, právě predispozice našeho uvažování
+jsou natolik rozmanité, že takovou prognózu nelze brát jinak než-li jen za orientační.
+    Programovací jazyk processing vychází z laboratoří MIT, kde se celé oddělení věnuje právě
+koncepcím zjednodušování programovacích jazyků .... historie small talk atd. zde
+1.2 Dokonalost jazyka
+Co je to dokonalý jazyk? Nejprve je zapotřebí říci, že absolutně dokonalý jazyk neexistuje.
+Jazyk si můžeme představit jako systém vzájemných vztahů, který je schopen popsat jednotlivé
+symboly nebo objekty. Symboly můžeme nazvat předměty, tyto předměty dále mají své vlastní
+hodnoty a vlastnosti, jazyk kromě definic takových vlastností operuje a popisuje jednotlivé jevy
+a vztahy mezi těmito předměty. Jednodušší popis jazyka je v pojetí výpočetní techniky určitý
+ucelený systém schopný popsat rozmanité problémy řešitelné strojem.
+    Co činí předem jakýkoli jazyk absolutně nedokonalým je nejprve fakt, že jakýmkoli jazykem
+nedokážeme vyjádřit původ jazyka, tj. jeho strůjce; člověka. Jazyk použitý pro instuktáž stroje je
+vnitřně konzistentní a funguje logicky hermeticky, tj. nepřipouští jiný než jeden výklad konkrét-
+ního textu. Pojetí dokonalosti jazyka ve smyslu vnitřní logické konzistence je naprostou nezyt-
+ností v pojetí interpretace strojem, na druhou stranu téměř nepřekonatelnou překážkou v případě
+abstraktnějšíh úvah o programování jako takovém.
+    Použiji zde pro názornost rozdíl programovacího jazyka s jazykem českým. Český jazyk,
+stejně tak jako jakýkoli mluvený nebo psaný jazyk, je jazykem organickým ustáleným po staletí
+užívání. Jazyk jak ho známe slouží ke komunikaci mezi lidmi, lze tedy použít například pro
+popis krajiny. Přestože k dokonalému popisu krajiny ztěží kdy můžeme dojít, těmito slovy které
+se opírají o určitou sdílenou zkušenost, lze poměrně dobře přiblížit určitý obraz věcí.
+    Pokusili bychom se pro popis krajiny použít jazyk programovací, dostaneme se velmi rychle
+do nesnází. Programovací jazyk není jazykem určeným primárně pro předání informací mezi
+lidmi, ale pro komunikaci člověka se strojem. Jeho vnitřní logická konzistence, tvrdá logická
+struktura, která nedovoluje v jeden okamžik jinou než jednu interpretaci, je jeho velikou před-
+ností při definici exaktních parametrů. Podobnost s řečí spočívá ve vazbě slov, které reprezentují
+jednotlivé hodnoty a operace. Hlavní odlišnost je v jeho syntetickém původu, jedná se o jazyk
+umělý a účelu ke kterému byl zkonstruován. Programovací jazyk je přednostně zkonstuovaný
+pro definici známého a pochopeného. V případě neznámých nebo nepoznaných veličin, jako je
+napřiklad pocit z rozkvetlé louky, je programovací jazyk víceméně k ničemu.
+    Chceme-li komunikovat se strojem musíme tedy svůj způsob vyjadřování přizpůsobit logicky
+dokonalému jazyku - vnitřní logice fungování stroje. Počítač není navržen k tomu aby něčemu
+rozuměl, počítač je navržen k řešení jasně definovaných otázek. Tato kniha se pokusí srozu-
+mitelnou formou popstat jeden z možných způsobů jak si osvojit takový jazyk a potažmo způsob
+uvažování, který vede k jasné definici problému. Hovoříme-li o programování, máme na mysli
+proces tvorby jisté logické struktury. Osvojení si programování spočívá ve schopnosti definovat
+problém nebo jasně formulovat otázku, tak aby stroj na ni mohl odpovědět.
+                                                 2
+    Vtip celé věci spočívá v tom, že ovládneme-li formálně jazyk určený stroji, můžeme prostřed-
+nictvím tohoto stroje hovořit i ke člověku, tj. popisovat pocity z rozkvetlých luk.
+1.3 Volba jazyka
+Ve výpočetní technice se nachází celá škála programovacích jazyků i prostředí. Tyto jazyky mají
+svoji genezi a byli historicky vyvíjeny především počítačovými odborníky. Jejich dokanalost lze
+těžko ocenit z vnějšího pohledu, a to právě z důvodu jejich konstrukce, která odpovídá a částečně
+podléhá určitým účelům, ke kterým byli tyto jazyky původně navženy. Celistvý pohled na vývoj
+programovacích jazyků zde není možné obsáhnout. Základní rozdělení programovacích jazuků
+dle historického vývoje můžeme dnes označit na dvě skupiny, jazyky procedurální a objektově
+orientované.
+    Processing se svojí stavbou na základech Javy řadí k objektově orientovaným jazykům. Jeho
+společnými příbuznými jsou kromě Javy jazyky jako C++, C#, nebo VisualBasic. Toto rozdělení
+pojednává o koncepci jazyka a jeho základních struktur. Ke kterým se dostaneme později.
+    V posledních přibližně dvaceti letech se mezi programovacími jazyky postupně objevuje ten-
+dence po větší srozumitelnosti a potažmo zjednodušení programovanání jako takového. Pro-
+gramování v této koncepci zjednodušování již není jen jazykem odborníků, ale je demokraticky
+přístupný širší veřejnosti z rozmanitých - prioritně netechnických oborů.
+    Tato tendence postupně dala vzniknout celé rodině programovacích jazyků 2 které mají ve
+snaze nablížit potenciál výpočetní techniky blíže k výtvarné tvorbě. V technických kruzích je již
+sama disciplína psaní programů považována za tvůrčí. V pojetí výtvarného umění dnes převažuje
+pohled na programování jako na rigidní a notně limitovanou činnost.
+    Jazyk, který je nutně limitovaný svojí vnitřní dokonalostí (dokonavostí?) ovšem nemusí nutně
+limitovat jeho uživatele ve sdělení. Uživatel se ovšem musí do určité míry, naučením se základ-
+ních struktur, přizpůsobit stroji k uskutečnění zdárné komunikace.
+    [Důvody pro processing]
+1.4 Otevřenost softwaru
+Jazyk nazvaný Processing je jedním z jazyků, který byl vytvořen v diskurzu zjednodnušování
+programování. Jako každý jiný programovací jazyk je i Processing navržen pro jisté účely. V
+případě tohoto programovacího jazyka se nejvíce jedná o důraz na rychý vývoj a snadné nakládání
+s obrazem i prostorem. Z více technického pohledu pak processing vyniká otevřeností zdrojového
+kódu a důraz na multiplatformnost.
+    Jazyk i programovací prostředí Processing je v současnosti tzv. otevřený software, což zna-
+mená, že i samotný zdrojový kód je volně k dispozici a šiřitelný pod MIT licencí [dpolnit li-
+cence GPL 3.0 .. atd]. Z pohledu uživatele je velmi příjemné, že samotný software je k dostání
+zdarma na stránkách projektu. Za jeho užívání není nutné platit žádné poplatky, a to i v přpadě
+komerčních užití.
+    Z pohledu vývojáře znamená oteřenost zdrojového kódu zásadní věc, jednoduše pro dosažitel-
+nost celého zdroje, který se dá následně například implementovat do různých prostředí, nebo ...
 
-Místo ostatních nadějí jsou jen samé nepříjemné zprávy. Jakoby nebylo dost na přírodních katastrofách, lidé si sami způsobují velké potíže. V Mexiku už nejsou vraždy překupníků drog dostatečně odstrašující, takže tam začali jedni gangsteři svým konkurentům usekávat hlavy - a to ne někde v nepřístupné poušti, nýbrž přímo v oblíbeném turistickém středisku Acapulco. Patrně se dívám do nevhodné části novin. Je neděle, tedy rozevřu část s náboženstvím, abych nasytil svou duši úvahami o víře, etice a lásce k bližnímu. Ilustrační snímek je opravdu povzbudivý. Ukazuje tisíce japonských obchodníků modlících se o prvním pracovním dni letošního roku u svatyně Kanda Myojin v Tokiu za návrat lepší hospodářské situace. Tato svatyně se specializuje na byznys a lidí je na snímku opravdu plno. Možná se japonské hospodářství letos opravdu zlepší - přeji to celému světu, a tedy nejen Japoncům.
-Odborníci na náboženství odpovídají na otázky veřejnosti. Ta dnešní se jich ptá, zdali Twitter a Facebook změnily situaci věřících jednotlivých církví. Jednoznačně povzbudivou odpověď dal ale jen pan Jack McLean za církev Bahá'i. Twitter mu umožňuje poučovat zájemce o tuto víru v Jižní Americe, Íránu i Kaledonii a filipínskou zájemkyni o členství odkázat na tamní obec nejbližší k jejímu bydlišti. Pan Rick Reed, starší pastor Metropolitní biblické církve, zná jiné pastory, kteří tweetují o novinkách členům své kongregace, ale on osobně radí svým věřícím, aby nemařili čas tweetováním a raději si četli v bibli a byli tak v přímém styku s Pánem Bohem místo zprostředkování přes Internet. Humanista a ateista Kevin Smith vítá sociální sítě, protože umožňují vzdělávat široký okruh zájemců, kteří se chtějí oprostit od pověr a církevních dogmat. V podstatě jsou všechny tyto informace povznášející, ale na velké straně novin je ještě jeden článek s neblahým titulkem: "Blasphemy law causes deep rifts in Pakistan" čili, že zákon o rouhání způsobuje v Pákistánu hluboké rozpory.
-Neměl jsem ten článek číst, ale na základě úsloví, že sdělená radost je dvojnásobná radost, kdežto sdělená bolest je poloviční bolest, jsem se rozhodl o něm napsat čtenářům Britských listů. Sdělená bolest, i když bude poloviční, bude ještě velice veliká. Zpráva pochází od pana Alexe Rodrigueze z agentury McClatchy-Tribune News.
-Muslimský klerik Muhammad Salim nemá nejmenší obavy, že by mohl buď soud nebo pákistánský prezident ušetřit život křesťanské matky 5 dětí v jeho obci, která byla odsouzena k trestu smrti za to, že se rouhala. I kdyby paní Asia Bibiová unikla oprátce kata, klerik Salim plně důvěřuje tomu, že ji zabije někdo jiný, protože ona si to zasluhuje. Usazen se zkříženýma nohama na slaměné rohoži v mešitě řekl, že kterýkoliv muslim, kterému se naskytne příležitost ji zabít, té příležitosti využije. "Vždyť za to bude odměněn na nebesích!" dodal. A nejen to, vždyť on sám není jediný člověk, který požaduje smrt ženy, která se rouhala. Nějaký klerik v Pešaváru nabídnul půl milionu rupií (6 000 dolarů) tomu, kdo paní Bibiovou zabije, kdyby nedošlo k úřední popravě. Jiní přísní klerici varují, že zmobilizují celostátní protesty proti vládě, jestliže by se pokusil prezident Asif Ali Zardari hříšnici omilostnit.
-Případ paní Bibiové způsobil v Pákistánu hluboký rozkol ohledně zákona o rouhání. Jedni tento zákon vidí jako účinný nástroj v zájmu udržování víry, kdežto jiná část společnosti na něj hledí jako na nebezpečný nástroj, jehož lze velice snadno zneužívat proti jiným lidem ve společnosti, která je směsí různých etnik, náboženství a sekt.
-Guvernér pákistánské provincie Pandžáb, pan Salma Taseer, byl minulý týden zastřelen členem své ochranky, protože ten nesouhlasil s liberálním názorem guvernéra na zákon o rouhání. Vražda dále zhoršila vztahy mezi vzájemnými odpůrci a uvrhla Pákistán do chaosu. O případu paní Asie Bibiové se dnes ví ve všech koutech země, protože se jedná o trest smrti. Podobných případů nyní přibylo. Pan Imran Latif byl obžalován v Lahore, že spaloval stránky z koránu, ale byl propuštěn na svobodu na kauci poté, co se obvinění ukázalo jako pochybné. O 8 dní později ho zastřelili dva muži a policie se domnívá, že vražda měla souvislost s jeho "rouháním". O měsíc dříve byl zatčen v Hajdarabádu lékař, šiitský muslim, na základě udání, že znevažoval proroka Muhammada. Jakým způsobem? Vyhodil do koše navštívenku zástupce farmaceutické firmy, na níž bylo vytištěno jeho první jméno - Muhammad. Lékař patří k šiitské sektě známé jako "Ismailis".
-Podle zákona jsou znevažující poznámky nebo urážky proroka Mohameda, koránu a islámské víry zločinem. Jednotlivé paragrafy zákona určují různé tresty a podle paragrafu, podle něhož byla souzena paní Asia Bibiová, je jediným trestem trest smrti.
-Kritici zákona poukazují na to, že je možné zneužívat ho, a tak si "vyrovnávat účty" s odpůrci nebo pronásledovat menšiny. Ochránci lidských práv se zmiňují o tom, že ho často používají pákistánští občané, kteří se soudí o majetek, a také při utiskování křesťanů, ahmadů a jiných menšin. Důkazy o rouhání jsou ve většině případů velice slabé - kromě toho, co říká sám udavač.
-Paní Asiu Bibiovou obvinily tři muslimské ženy, s nimiž pracovala při sklizni ovoce v poli blízko malé osady Ittanwali z hliněných chatrčí ve východním Pákistánu. Všechny ženy obědvaly 14. června 2009, když došlo k neshodě. Paní Asia Bibiová se rozhněvala a pronesla poznámku na adresu proroka Mohameda, k níž přidala, že "korán není knihou, kterou napsal Bůh, nýbrž lidé jako vy". O tom řekla paní Mafia Sattarová ve svém domě a ještě téhož večera tuto zprávu donesla její sestra manželce místního klerika Salima. O pět dní později přišla skupina vesničanů na pole a násilím odvedla paní Asiu Bibiovou ke klerikovi. Tam přiznala, že pronesla nevhodné poznámky, které později opakovala na policejní stanici v obci Nankana Sahib. Podle policejní zprávy tvrdila paní Bibiová, že je nevinná. Byla zatčena, uvězněna, usvědčena z rouhání a 8. listopadu odsouzena k trestu smrti.
-Po jejím usvědčení dal prezident Zardari najevo, že by mohl využít svého ústavního práva a udělit jí milost. Než to ale mohl udělat, zasáhl vysoký soud v Lahore a zabránil mu v jednání, zatímco prý projednával odvolání, což ochránci lidských práv označují za protiústavní.
-Dr. Nazir Bhatti, prezident Pákistánského křesťanského kongresu (PCC), prohlásil, že je neislámské aplikovat islámské zákony na křesťany. Připomenul "Medinskou dohodu" podepsanou samotným Prorokem (nechť odpočívá v pokoji), aby se islámské zákony nevztahovaly na židy a jiné náboženské menšiny. Zmínil se také o tom, že křesťané hlasovali ve prospěch Pákistánu a mají se podílet na zdrojích země. Na to Mufti Muneeb-ur-Rehman prohlásil v Karáčí koncem listopadu 2010, že jakékoliv pokusy o revizi zákona o rouhání budou zablokovány lidovou silou a že muslimové nedovolí, aby se tohoto zákona někdo dotýkal.
-Bohužel se dnes nemohu vrátit k odpovědím odborníků na náboženské otázky, protože odpověď zástupce muslimů, pana Abdula Rashida, dnes zůstala v internetovém vydání novin a nebyla vytištěna. Vím ale z jeho dřívějších příspěvků, že je islám naprosto spravedlivé náboženství, které zakazuje zabíjet jiné lidi. Osobně bych měl problém, komu věřit v případě, že by se zdejší kongregace jeho souvěrců podstatně rozrostla, takže by začala ovlivňovat zdejší politické dění, zdali jemu nebo lidem jako jsou soudcové v Hyderabadu a v Lahore a klerik Salim, případně další ochránci víry...
-Myslím, že si místo fíků půjdu koupit kyselé zelí - je "zelenější", má menší "uhlíkovou stopu", nedováží se, ale kvasí je čerstvé paní Monika v blízkém lahůdkářství.
