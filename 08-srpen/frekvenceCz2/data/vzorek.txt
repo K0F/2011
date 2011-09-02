@@ -1,0 +1,113 @@
+     ... Má snaha provést začínající i středně pokročilé uživatele jazykem bude vždy nezbytně ne-
+dostatečná, berte ji prosím spíše než-li za všeobjímající text, za průvodce nesnadnými začátky.
+      Čtete-li knihu z jiných důvodů než učení se tajům programovacích jazyků, pokusím se text
+knihy proložit sčetnými poznatky nabytými moji několikaletou zkušeností sdílení života se stroji.
+      Dostala-li se vám tato kniha do rukou prostou náhodou, to je mi líto, jste zřejmně systémovým
+omylem a věru netuším, co v ni dále najdete, a proto bych i Vás rád pobídl alespon k začtení se
+do světa odtřženého od všednosti, do světa skriptů a kódů.
+1.1 Jednoduchost jazyka
+Snaha po spřístupnění programování jako takového širší veřejnosti dala vzniknout rodině jazyků,
+které jsou patřičně zjednodušeny tak aby je mohli obsluhovat i neodborníci. Výchozím bodem
+pro zjednodušení programování je odpověd na situaci, kdy programovací jazyky vytvářeli lidé
+se zvláštním nadáním pro ryze technické uvažování. Technické uvažování je speciální schop-
+nost, pro kterou nemá každý člověk správné predispozice. Současně programování v současnosti
+znamená určitý stupen širší svobody při komunikaci se strojem. K míře svobody, která má své
+silné kritiky1 , se nyní nechci vyjadřovat, ale zjednodušeně z pouhého uživatele, který používá
+daný nástroj, schopnost programování z tohoto uživatele činí potencionálního strůjce vlastních
+nástrojů.
+      Hovořím-li o stroji mám dnes na mysli počítač. Termín stroj používám záměrně pro zdůraznění
+jisté formy strojového přemýšlení v historickém kontextu.
+      Nástroje jsou pak programy zkonstrouvané pro jistou činnost. Obvykle je nástroj vyvíjen
+za jedním účelem, který plní uživatelsky co nejpřivětivější cestou. Tato cesta je pro uživatele
+snadno schůdná a nabízí mu standartní škálu dovedností nástroje. Aniž bychom si toto přiliž
+uvědomovali, současná vizuální kultura je ovlivněna těmito nástroji daleko více než je na první
+pohled patrné. A technické možnosti jsou současným tržním hladem pro inovaci konfiskovány
+a proměnovány ve zboží. V této situaci je důležité znát nástroje i jejich vznik pro reflexi nebo
+kritiku v širších souvislostech.
+      Tato kniha je spíše než-li jednomu nástroji věnována programu pro tvorbu takových nástrojů.
+Jak již vyplývá z této definice použití Processingu není limitováno jen úhlem pohledu autora
+    1
+      včetně mne samotného
+                                                   1
+tohoto textu. Návod by se měl stát spíše pobídkou k co nejrozmanitější tvorbě vlastních nástrojů,
+sloužících opět pokudmožno k co možná neširší škále možných účelů.
+    Processing vychází z koncepce snadného přístupu k programování. Za běžných okolností by
+se vnímavý člověk měl být schopen naučit jednoduché struktuře programu a schopnosti vytvořit
+vlastní program v průběhu několika dní. Na druhou stranu, právě predispozice našeho uvažování
+jsou natolik rozmanité, že takovou prognózu nelze brát jinak než-li jen za orientační.
+    Programovací jazyk processing vychází z laboratoří MIT, kde se celé oddělení věnuje právě
+koncepcím zjednodušování programovacích jazyků .... historie small talk atd. zde
+1.2 Dokonalost jazyka
+Co je to dokonalý jazyk? Nejprve je zapotřebí říci, že absolutně dokonalý jazyk neexistuje.
+Jazyk si můžeme představit jako systém vzájemných vztahů, který je schopen popsat jednotlivé
+symboly nebo objekty. Symboly můžeme nazvat předměty, tyto předměty dále mají své vlastní
+hodnoty a vlastnosti, jazyk kromě definic takových vlastností operuje a popisuje jednotlivé jevy
+a vztahy mezi těmito předměty. Jednodušší popis jazyka je v pojetí výpočetní techniky určitý
+ucelený systém schopný popsat rozmanité problémy řešitelné strojem.
+    Co činí předem jakýkoli jazyk absolutně nedokonalým je nejprve fakt, že jakýmkoli jazykem
+nedokážeme vyjádřit původ jazyka, tj. jeho strůjce; člověka. Jazyk použitý pro instuktáž stroje je
+vnitřně konzistentní a funguje logicky hermeticky, tj. nepřipouští jiný než jeden výklad konkrét-
+ního textu. Pojetí dokonalosti jazyka ve smyslu vnitřní logické konzistence je naprostou nezyt-
+ností v pojetí interpretace strojem, na druhou stranu téměř nepřekonatelnou překážkou v případě
+abstraktnějšíh úvah o programování jako takovém.
+    Použiji zde pro názornost rozdíl programovacího jazyka s jazykem českým. Český jazyk,
+stejně tak jako jakýkoli mluvený nebo psaný jazyk, je jazykem organickým ustáleným po staletí
+užívání. Jazyk jak ho známe slouží ke komunikaci mezi lidmi, lze tedy použít například pro
+popis krajiny. Přestože k dokonalému popisu krajiny ztěží kdy můžeme dojít, těmito slovy které
+se opírají o určitou sdílenou zkušenost, lze poměrně dobře přiblížit určitý obraz věcí.
+    Pokusili bychom se pro popis krajiny použít jazyk programovací, dostaneme se velmi rychle
+do nesnází. Programovací jazyk není jazykem určeným primárně pro předání informací mezi
+lidmi, ale pro komunikaci člověka se strojem. Jeho vnitřní logická konzistence, tvrdá logická
+struktura, která nedovoluje v jeden okamžik jinou než jednu interpretaci, je jeho velikou před-
+ností při definici exaktních parametrů. Podobnost s řečí spočívá ve vazbě slov, které reprezentují
+jednotlivé hodnoty a operace. Hlavní odlišnost je v jeho syntetickém původu, jedná se o jazyk
+umělý a účelu ke kterému byl zkonstruován. Programovací jazyk je přednostně zkonstuovaný
+pro definici známého a pochopeného. V případě neznámých nebo nepoznaných veličin, jako je
+napřiklad pocit z rozkvetlé louky, je programovací jazyk víceméně k ničemu.
+    Chceme-li komunikovat se strojem musíme tedy svůj způsob vyjadřování přizpůsobit logicky
+dokonalému jazyku - vnitřní logice fungování stroje. Počítač není navržen k tomu aby něčemu
+rozuměl, počítač je navržen k řešení jasně definovaných otázek. Tato kniha se pokusí srozu-
+mitelnou formou popstat jeden z možných způsobů jak si osvojit takový jazyk a potažmo způsob
+uvažování, který vede k jasné definici problému. Hovoříme-li o programování, máme na mysli
+proces tvorby jisté logické struktury. Osvojení si programování spočívá ve schopnosti definovat
+problém nebo jasně formulovat otázku, tak aby stroj na ni mohl odpovědět.
+                                                 2
+    Vtip celé věci spočívá v tom, že ovládneme-li formálně jazyk určený stroji, můžeme prostřed-
+nictvím tohoto stroje hovořit i ke člověku, tj. popisovat pocity z rozkvetlých luk.
+1.3 Volba jazyka
+Ve výpočetní technice se nachází celá škála programovacích jazyků i prostředí. Tyto jazyky mají
+svoji genezi a byli historicky vyvíjeny především počítačovými odborníky. Jejich dokanalost lze
+těžko ocenit z vnějšího pohledu, a to právě z důvodu jejich konstrukce, která odpovídá a částečně
+podléhá určitým účelům, ke kterým byli tyto jazyky původně navženy. Celistvý pohled na vývoj
+programovacích jazyků zde není možné obsáhnout. Základní rozdělení programovacích jazuků
+dle historického vývoje můžeme dnes označit na dvě skupiny, jazyky procedurální a objektově
+orientované.
+    Processing se svojí stavbou na základech Javy řadí k objektově orientovaným jazykům. Jeho
+společnými příbuznými jsou kromě Javy jazyky jako C++, C#, nebo VisualBasic. Toto rozdělení
+pojednává o koncepci jazyka a jeho základních struktur. Ke kterým se dostaneme později.
+    V posledních přibližně dvaceti letech se mezi programovacími jazyky postupně objevuje ten-
+dence po větší srozumitelnosti a potažmo zjednodušení programovanání jako takového. Pro-
+gramování v této koncepci zjednodušování již není jen jazykem odborníků, ale je demokraticky
+přístupný širší veřejnosti z rozmanitých - prioritně netechnických oborů.
+    Tato tendence postupně dala vzniknout celé rodině programovacích jazyků 2 které mají ve
+snaze nablížit potenciál výpočetní techniky blíže k výtvarné tvorbě. V technických kruzích je již
+sama disciplína psaní programů považována za tvůrčí. V pojetí výtvarného umění dnes převažuje
+pohled na programování jako na rigidní a notně limitovanou činnost.
+    Jazyk, který je nutně limitovaný svojí vnitřní dokonalostí (dokonavostí?) ovšem nemusí nutně
+limitovat jeho uživatele ve sdělení. Uživatel se ovšem musí do určité míry, naučením se základ-
+ních struktur, přizpůsobit stroji k uskutečnění zdárné komunikace.
+    [Důvody pro processing]
+1.4 Otevřenost softwaru
+Jazyk nazvaný Processing je jedním z jazyků, který byl vytvořen v diskurzu zjednodnušování
+programování. Jako každý jiný programovací jazyk je i Processing navržen pro jisté účely. V
+případě tohoto programovacího jazyka se nejvíce jedná o důraz na rychý vývoj a snadné nakládání
+s obrazem i prostorem. Z více technického pohledu pak processing vyniká otevřeností zdrojového
+kódu a důraz na multiplatformnost.
+    Jazyk i programovací prostředí Processing je v současnosti tzv. otevřený software, což zna-
+mená, že i samotný zdrojový kód je volně k dispozici a šiřitelný pod MIT licencí [dpolnit li-
+cence GPL 3.0 .. atd]. Z pohledu uživatele je velmi příjemné, že samotný software je k dostání
+zdarma na stránkách projektu. Za jeho užívání není nutné platit žádné poplatky, a to i v přpadě
+komerčních užití.
+    Z pohledu vývojáře znamená oteřenost zdrojového kódu zásadní věc, jednoduše pro dosažitel-
+nost celého zdroje, který se dá následně například implementovat do různých prostředí, nebo ...
+
