@@ -1,3 +1,4 @@
+
 /*
 * Gif anim -> use gimp to load as layers and save as gif animation
 * by kof 2011
@@ -14,7 +15,7 @@ int y[] = {-1,0,0,1};
 int sp[] = {1,2,4};
 
 void setup(){
-    size(128,128);
+    size(128,128,OPENGL);
 
     pos = new PVector[num];
     smer = new PVector[num];
