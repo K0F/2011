@@ -10,6 +10,7 @@ ArrayList ball = new ArrayList<Ball>(0);
 // number of interactiong objects, accuracy and of course rendering
 int num = 6;
 
+
 // accuracy of measuring, approx. ! < num, processor hungry when a lot of objects
 int accuracy = 6;
 
@@ -26,6 +27,7 @@ PImage debian;
 
 float distance = -5000;
 
+float distanceSmooth = distance;
 
 void setup(){
 
@@ -91,13 +93,14 @@ void draw(){
 	// close opened transformations
 	world.post();
 
+	int fd = 220;
 
-	if(frameCount<900){
-		fill(0,map(frameCount,0,900,255,0));
+	if(frameCount<fd){
+		fill(255,map(frameCount,0,fd,255,0));
 		rect(0,0,width,height);
 
 		// slowly closing
-		distance = map(frameCount,0,900,-5000,-1000);
+		distance += (map(frameCount,0,fd,-5000,-700)-distance)/2.0;
 	
 		//tint(255,200+noise(frameCount/5.0)*10);
 		//println(world.rotationS.z);
@@ -105,9 +108,11 @@ void draw(){
 	
 	}
 
+	distanceSmooth += (distance-distanceSmooth) / 30.0;
+
 
 		
-		tint(255,200+noise(frameCount/5.0)*10);	
+		tint(255,100+noise(frameCount/5.0)*10);	
 		image(fadeIn,atan2(world.rotationS.x-world.rotationS.z,world.rotationS.y)*200-100,0);
 		noTint();
 }
@@ -313,7 +318,7 @@ class World{
 
 
 		// jerky cam is happening here
-		translate(noise(frameCount/10.0)*20+rotAcc.x*30.0,noise((frameCount+333.14)/10.0)*20+rotAcc.y*30.0,distance);
+		translate(noise(frameCount/10.0)*20+rotAcc.x*30.0,noise((frameCount+333.14)/10.0)*20+rotAcc.y*30.0,distanceSmooth);
 
 		
 		
