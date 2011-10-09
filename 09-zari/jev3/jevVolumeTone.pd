@@ -1,0 +1,13 @@
+#N canvas 601 411 390 285 10;
+#X obj 192 24 osc~ 523.25;
+#X obj 264 24 osc~ 1582.34;
+#X obj 192 131 dac~;
+#X obj 193 95 *~;
+#X text 7 4 Jev / Phenomenon kof 11 size 1280 x 720 ellipse vol: 229022
+px2 rect vol: 692578 px2 volume ratio ellipse: 1 rest: 3.02407 Duration:
+8500 frames Framerate: 25 fps Tone start: 200 frame Tone stop: 7500
+frame Tone start: 8400 frame Tone stop: 8425 frame;
+#X text 188 7 tone diagram:;
+#X connect 0 0 3 0;
+#X connect 1 0 3 1;
+#X connect 3 0 2 0;
