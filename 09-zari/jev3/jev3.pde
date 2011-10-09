@@ -1,3 +1,7 @@
+/**
+*  Jev Phenomenon series, documentary film festival Jihlava
+*  by Kof 2011
+*/
 
 float r;
 
@@ -5,6 +9,8 @@ void setup(){
 
 	size(1280,720);
 
+	// three quarters of height gives a basic frequency
+	// 523.25
 	r = (height/2+height/4);
 
 	noiseSeed(19);
@@ -38,21 +44,21 @@ void draw(){
 
 	}else if(frameCount>125 && frameCount <= 200){
 
-	background(255);
+		background(255);
 
 	}else if(frameCount<=3750){
-		
-	background(250+(noise(frameCount/300.0)*15.0));
-	ellipse(width/2,height/2,r,r);
-	
+
+		background(250+(noise(frameCount/300.0)*15.0));
+		ellipse(width/2,height/2,r,r);
+
 	}else if (frameCount>3750 && frameCount <= 7500){
-	background(0);
-	fill(255);
-	ellipse(width/2,height/2,r,r);
+		background(0);
+		fill(255);
+		ellipse(width/2,height/2,r,r);
 
 	}
 	else{
-	background(0);
+		background(0);
 	}
 
 	if(frameCount>8400 && frameCount<=8425){
