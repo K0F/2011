@@ -15,18 +15,32 @@ void setup(){
 	smooth();
 
 
-	textFont(createFont("Calluna",19));
+	textFont(createFont("Liberation Sans Bold Italic",19));
 	textMode(SCREEN);
 	textAlign(CENTER);
 
+	println(PFont.list());
+
+	frameCount = 0;
 }
 
 
 void draw(){
 
 
+	if(frameCount<=100){
+		background(255);
+	}else if(frameCount>100 && frameCount<=125){
+		background(255);
+		fill(0);
+		text("Jev / Phenomenon",width/2,height/2);
 
-	if(frameCount<=3750){
+
+	}else if(frameCount>125 && frameCount <= 200){
+
+	background(255);
+
+	}else if(frameCount<=3750){
 		
 	background(250+(noise(frameCount/300.0)*15.0));
 	ellipse(width/2,height/2,r,r);
@@ -37,9 +51,13 @@ void draw(){
 	ellipse(width/2,height/2,r,r);
 
 	}
+	else{
+	background(0);
+	}
 
 	if(frameCount>8400 && frameCount<=8425){
-		text("Jev\nkof 11",width/2,height/2);
+		fill(255);
+		text("kof 11",width/2,height/2);
 	}
 
 	if(frameCount>=8500){
