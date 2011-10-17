@@ -8,15 +8,15 @@ int plottNum = 500;
 // number of random patterns
 int patNum = 33;
 //number of oscillators
-int rotNum = 66;
+int rotNum = 66+27;
 
 // minimum oscillation speed (the more low == slower), and the relative spread of speeds (lower == more organized structure)
-float minRep = 0.08;
-float spread = 0.001238743;
+float minRep = 0.09;
+float spread = 0.0000338743;
 // size of display averages
 int prumSize = 5;
 // scale speed of movement per cycle
-float scal = 0.4;
+float scal = 10.0;
 // alpha of drawer
 
 float alph = 4;
@@ -70,7 +70,7 @@ float GLOBAL_STEP = minRep;
 
 
 void setup(){
-	size(480,700,P2D);
+	size(1600,900,P2D);
 
         // init function
 	reset();
@@ -302,7 +302,7 @@ class CPU{
 	//////////////////////////////
 	
 
-
+	// bitwise *black* magic
 	void interconnect(){
 		// get the reference pattern
 	//	Pattern current_pattern = (Pattern)patterns.get(current);
@@ -313,29 +313,10 @@ class CPU{
 		// update curretn pattern
 		Pattern avail = (Pattern)patterns.get(current);
 		Pattern navail = (Pattern)patterns.get(neigh.current);
-		int mod = (id+current) % 5;
 			
 			for(int i = 0;i<pat.state.length;i++){
-				switch(mod){
-					case 0:
-					pat.state[i] = navail.state[i] && neigh.pat.state[i];
-					break;
+					pat.state[i] = (avail.state[i] ^ neigh.pat.state[i]);
 
-					case 1:
-					pat.state[i] = navail.state[i] && neigh.pat.state[i];
-					break;
-
-					case 2:
-					pat.state[i] = navail.state[i] || neigh.pat.state[i];
-					break;
-
-					case 3:
-					pat.state[i] ^= navail.state[i] && neigh.pat.state[i];
-					break;
-
-					default:
-					pat.state[i] = !pat.state[i];
-				}
 			}
 
 		}
@@ -460,12 +441,15 @@ class CPU{
 				reach=true;
 		}
 
+		if(is_first){
+
 		Pattern p = (Pattern)patterns.get(current);
 
 		pat = new Pattern(true);
 		for(int i = 0;i<pat.state.length;i++){
 			pat.state[i] = p.state[i];
 		}	
+		}
 		//(Pattern)patterns.get(current);
 
 	}
@@ -567,6 +551,7 @@ class Plotter{
 		for(int i = 0;i<graph.length;i++){
 			plotX += xs[i]*map(graph[i],0,kolik,0,scal);
 			plotY += ys[i]*map(graph[i],0,kolik,0,scal);
+			plotY += (width/2.0-plotY)*0.001;
 		}
 
 		img.stroke(0,alph);
