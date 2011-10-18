@@ -9,9 +9,9 @@ long SEED = 19;
 //////////// THERE IS NO CHOICE ! ////////////////////////
 
 // PRINT
-int INK = 200;
+int INK = 2000;
 boolean serie = true;
-int SERIE = 999;
+int SERIE = 10;
 
 int SIRKA = 1600;
 int VYSKA = 900;
@@ -139,7 +139,7 @@ void printImg(){
 	img.endDraw();
 
 	frmCnt++;
-	img.save("/desk/kof_11/raw"+nf(frmCnt,4)+".png");
+	img.save("/desk/statics/raw"+nf(frmCnt,4)+".png");
 }
 
 void keyReleased(){
@@ -290,9 +290,9 @@ void draw(){
 		if(SEED>=SERIE)
 		 exit();
 		
-		ANIM += 0.0001;
-		UNIQUE = 3.0;
-		//SEED+=0.0001;
+		//ANIM += 0.0001;
+		UNIQUE = 3.3;
+		SEED+=1;
 		reset();
 		frameCount = 1;
 	}
@@ -620,7 +620,7 @@ class Plotter{
 		for(int i = 0;i<graph.length;i++){
 			plotX += xs[i]*map(graph[i],0,kolik,0,scal);
 			plotY += ys[i]*map(graph[i],0,kolik,0,scal);
-			plotY += (height/2.0-plotY)*0.0033;
+		//	plotY += (height/2.0-plotY)*0.0033;
 		}
 
 		img.stroke(0,alph);
