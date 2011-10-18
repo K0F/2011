@@ -19,12 +19,12 @@ int VYSKA = 900;
 
 int plottNum = 644;
 // number of random patterns
-int patNum = 333;
+int patNum = 999;
 //number of oscillators
 int rotNum = 360/2-9;
 
 // minimum oscillation speed (the more low == slower), and the relative spread of speeds (lower == more organized structure)
-float minRep = 0.9;
+float minRep = 0.29;
 float spread = 0.0000338743;
 // size of display averages
 int prumSize = 5;
@@ -139,7 +139,7 @@ void printImg(){
 	img.endDraw();
 
 	frmCnt++;
-	img.save("/desk/kof_11/raw"+nf(frmCnt,4)+"_ze_"+nf(SERIE,4)+".png");
+	img.save("/desk/kof_11/raw"+nf(frmCnt,4)+".png");
 }
 
 void keyReleased(){
@@ -290,8 +290,9 @@ void draw(){
 		if(SEED>=SERIE)
 		 exit();
 		
-
-		SEED+=0.000001;
+		ANIM += 0.0001;
+		UNIQUE = 3.0;
+		//SEED+=0.0001;
 		reset();
 		frameCount = 1;
 	}
@@ -299,6 +300,8 @@ void draw(){
 
 }
 //////////////////////////////
+float ANIM = 0;
+
 //////////////////////////////
 class CPU{
 	// own pattern and reference
@@ -310,7 +313,7 @@ class CPU{
 	float time;
 
 	// speed of oscillation
-	float tstep = 0.01;
+	float tstep = 0.0001;
 
 	// radius (drawing only)
 	float r = 20;
@@ -342,11 +345,11 @@ class CPU{
 		if(id == 0)
 			is_first = true;
 
-		GLOBAL_STEP -= spread;		
+		GLOBAL_STEP -= spread;
 
 		// random speed according global settings
-		tstep += GLOBAL_STEP; //random(minRep,minRep+spread)/10000.0;
-
+		tstep += GLOBAL_STEP+ANIM; //random(minRep,minRep+spread)/10000.0;
+		
 
 		pat = new Pattern(true);
 
