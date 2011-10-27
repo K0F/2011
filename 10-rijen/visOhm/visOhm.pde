@@ -15,7 +15,7 @@ void setup(){
 	frameRate(30);
 	noStroke();
 	fill(255);
-	frameCount = 4785;
+	frameCount = 6710;
 }
 
 
