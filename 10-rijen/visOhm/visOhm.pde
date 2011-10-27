@@ -5,7 +5,7 @@ float size_of_dot = 20.0;
 
 float step = 0;
 
-color c[] = {#FFFFFF,#FFFFFF,#FFFFFF,#FFFFFF,#FFFFFF,#FFFFbb}; 
+color c[] = {#FF0000,#00FF00,#0000FF}; 
 int barvaCnt = 0;
 
 
@@ -65,7 +65,7 @@ void draw(){
 
 if(dist(_x,_y,width/2,height/2)<sin(frameCount/300.0)*height/2-_size_of_dot){
 
-					fill(#0000FF);//lerpColor( #FFFFFF, c[(barvaCnt++)%c.length] , (sin((frameCount+1500)/3.0)+1.0)/2.0 )  );
+					fill(c[(X+Y+i)%c.length]);//lerpColor( #FFFFFF, c[(barvaCnt++)%c.length] , (sin((frameCount+1500)/3.0)+1.0)/2.0 )  );
 			
 					ellipse(_x,_y,_size_of_dot,_size_of_dot);
 	}else{
