@@ -15,7 +15,7 @@ void setup(){
 	frameRate(30);
 	noStroke();
 	fill(255);
-	frameCount = 2871;
+	frameCount = 4785;
 }
 
 
@@ -65,7 +65,7 @@ void draw(){
 
 if(dist(_x,_y,width/2,height/2)<sin(frameCount/300.0)*height/2-_size_of_dot){
 
-					fill(#00FF00);//lerpColor( #FFFFFF, c[(barvaCnt++)%c.length] , (sin((frameCount+1500)/3.0)+1.0)/2.0 )  );
+					fill(#0000FF);//lerpColor( #FFFFFF, c[(barvaCnt++)%c.length] , (sin((frameCount+1500)/3.0)+1.0)/2.0 )  );
 			
 					ellipse(_x,_y,_size_of_dot,_size_of_dot);
 	}else{
