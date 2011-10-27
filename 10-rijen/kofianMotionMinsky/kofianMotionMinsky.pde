@@ -5,11 +5,11 @@
 
 
 //////////////// LUCKY NUMBER //////////////////////////
-long SEED = 19;
+long SEED = 3;
 //////////// THERE IS NO CHOICE ! ////////////////////////
 
 // PRINT
-int INK = 2000;
+int INK = 450;
 boolean serie = true;
 int SERIE = 10;
 
@@ -17,24 +17,30 @@ int SIRKA = 1600;
 int VYSKA = 900;
 
 
-int plottNum = 644;
+int plottNum = 555;
 // number of random patterns
-int patNum = 999;
+int patNum = 3;
 //number of oscillators
-int rotNum = 360/2-9;
+int rotNum = 1;
+
+
+// animation mess here
+void anim(){
+	rotNum++;
+}
 
 // minimum oscillation speed (the more low == slower), and the relative spread of speeds (lower == more organized structure)
-float minRep = 0.29;
-float spread = 0.0000338743;
+float minRep = 0.19;
+float spread = 0.0003;
 // size of display averages
 int prumSize = 5;
 // scale speed of movement per cycle
 float scal = 5.0;
 // alpha of drawer
 
-float alph = 4;
+float alph = 3.1;
 // scale of graph
-float sc = 30.0;
+float sc = 3.0;
 
 boolean showGRPHS = true;
 boolean showCONNECT = false;
@@ -74,7 +80,7 @@ int ys[] = {-2,-2,-2,-2,-2,-1,-1,-1,-1,-1,0,0,0,0,0,1,1,1,1,1,2,2,2,2,2};
 PGraphics img;
 PFont font;
 
-float UNIQUE = (float)(SEED/7.7+1.0);
+float UNIQUE = 3.3;//(float)(SEED/7.7+1.0);
 
 // cycle finished ?
 boolean reach = false;
@@ -90,6 +96,9 @@ void setup(){
 	
 	font = createFont("Calluna",24,true);
 
+
+	
+	noiseSeed(SEED);
 	// init function
 	reset();
 
@@ -107,18 +116,19 @@ void setup(){
 
 
 
-	if(serie){
+	/*if(serie){
 		SEED = 1;
-	}
+	}*/
 
-	noiseSeed(SEED);
+
+	
 }
 //////////////////////////////
 void eraseImg(){
 	img.beginDraw();
 	img.background(255);
 	//smoothing off ?
-	//img.smooth();
+	img.smooth();
 	img.endDraw();
 
 
@@ -133,7 +143,7 @@ void printImg(){
 	img.textFont(font);
 	img.textMode(SCREEN);
 	img.textAlign(RIGHT);
-	img.fill(#FEEFAA);
+	img.fill(#111111);
 	img.text(nf((int)SEED,3)+"/"+nf(SERIE,3),width-30,height-60);
 	
 	img.endDraw();
@@ -185,16 +195,18 @@ void reset(){
 	/////////////////
 
 	// create drawable canvas
-	img = createGraphics(width,height,P2D);
+	img = createGraphics(width,height,JAVA2D);
 
 	// background
 	eraseImg();
 
 	// for extra debug graphs
 	graphX = 0;
+	
 
+	anim();
 	noiseSeed(SEED);
-	UNIQUE = (float)(SEED/7.7+1.0);
+	UNIQUE = 3.3;//(float)(SEED/7.7+1.0);
 	GLOBAL_STEP = minRep;
 }
 //////////////////////////////
@@ -292,7 +304,9 @@ void draw(){
 		
 		//ANIM += 0.0001;
 		UNIQUE = 3.3;
-		SEED+=1;
+		
+		
+		//SEED+=1;
 		reset();
 		frameCount = 1;
 	}
@@ -379,7 +393,7 @@ class CPU{
 			Pattern navail = (Pattern)patterns.get(neigh.current);
 
 			for(int i = 0;i<pat.state.length;i++){
-				pat.state[i] = (avail.state[i] ^ neigh.pat.state[i]);
+				pat.state[i] = !(avail.state[i] ^ neigh.pat.state[i]) & neigh.pat.state[i];
 
 			}
 
@@ -620,7 +634,7 @@ class Plotter{
 		for(int i = 0;i<graph.length;i++){
 			plotX += xs[i]*map(graph[i],0,kolik,0,scal);
 			plotY += ys[i]*map(graph[i],0,kolik,0,scal);
-		//	plotY += (height/2.0-plotY)*0.0033;
+			plotY += (height/2.0-plotY)*0.0013;
 		}
 
 		img.stroke(0,alph);
