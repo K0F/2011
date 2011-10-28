@@ -53,28 +53,24 @@ void draw(){
 				float _size_of_dot = map(i,0,num,1,size_of_dot);
 
 				_x+=cos((frameCount+X+i)/(2000.12346))*50;
-				//_y+=sin((frameCount+Y+i)/(200.0))*5;
+				//_y+=sin((frameCount+Y+i)/(2000.0))*5;
 
-				_x += (width/2.0-_x)/(sin(frameCount/500.0)+4.0);
-				//_y += (height/2.0-_y)/(sin(frameCount/30.0)+1.0);
+				_x += (width/2.0-_x)/(sin(frameCount/500.0)+6.0);
+				//_y += (height/2.0-_y)/(sin(frameCount/30.0)+6.0);
 
 				if(
 						_x<=width-_size_of_dot && 
 						_x>=_size_of_dot && 
 						_y>=_size_of_dot &&
 						_y<=height-_size_of_dot// && 
-						//((i+frameCount)%((int)(sin(frameCount/100.0)+1.0)*3.0+2.0)==0)
 				  ){
-					//float _al = (sin(frameCount%((i+1)/30.0))+1.0)*200;
-					//fill(255,_al);
 
 					if(X==0){
 
-						fill(!negative?cn[(X+Y+i)%c.length]:c[(X+Y+i)%c.length]);//lerpColor( #FFFFFF, c[(barvaCnt++)%c.length] , (sin((frameCount+1500)/3.0)+1.0)/2.0 )  );
+						fill(!negative?cn[(X+Y+i)%c.length]:c[(X+Y+i)%c.length]);
 
 					}else{
 						fill(!negative?cn[(X^Y*i)%c.length]:c[(X^Y*i)%c.length]);
-						//fill(lerpColor( #000000, c[(X+Y+i)%c.length] , (sin((frameCount+1500)/3.0)+1.0)/2.0 )  );
 					}
 
 					ellipse(_x,_y,_size_of_dot,_size_of_dot);
@@ -84,7 +80,9 @@ void draw(){
 		}
 	}
 
-	if(frameCount%(30*30)==0)
+
+	// this is for the patient ones ;)
+	if(frameCount%(60000)==0)
 		negative = !negative;
 	//saveFrame("/desk/visOhm/vohm#####.png");
 
