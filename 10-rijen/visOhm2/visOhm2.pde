@@ -1,6 +1,6 @@
 void setup(){
 
-	size(600,400,P2D);
+	size(1280,720,P2D);
 	fill(255,5);
 	frameRate(25);
 	noSmooth();
@@ -30,7 +30,7 @@ void draw(){
 	float x,y,r;
 	for(int X = 0;X <= width; X+=width/2){
 		for(int Y = 0 ; Y <= height;Y+=height/2){
-			for(int i = 0 ; i < 2000;i++){
+			for(int i = 0 ; i < 4000;i++){
 				x = width/2 + width*(1.0+cos((frameCount/10.0*pow(i+frameCount,2.17))/3000000.0))+X;	
 				y = height*(1.0+sin((frameCount*pow(i+1.0,2.4)/10.0)/300.0))+Y;	
 				x %= (width);
