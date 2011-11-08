@@ -11,7 +11,7 @@ float speedUP;
 
 void setup(){
 
-	size(1600,900,P2D);
+	size(800,600,P2D);
 
 
 
@@ -22,9 +22,9 @@ void setup(){
 	speed = new float[num];
 
 	for(int i = 0 ; i < ang.length;i++){
-		ang[i] = 0;
-		L[i] = (200.0)/(i*4.0+1.0);
-		speed[i] = 0.1-i/(200.0+i);
+		ang[i] = i;
+		L[i] = (400.0)/(4.0+i/100.0);
+		speed[i] = 0.1-i/(200.0);
 
 	}
 
@@ -34,7 +34,8 @@ void setup(){
 	background(0);
 	stroke(255,10);
 	
-	speedUP = HALF_PI * 3333.3;
+	speedUP = HALF_PI * 1000.3;
+
 }
 
 
@@ -49,11 +50,11 @@ void draw(){
         popStyle();
 
 	pushMatrix();
-	translate(noise(frameCount/3.0)*5,noise(frameCount/3.21)*5);
+	translate(noise(frameCount/1.5)*5,noise(frameCount/1.21)*5);
 
 
 	if(frameRate < 30)
-	//speedUP --;
+	speedUP --;
 
 	for(int q = 0;q< speedUP ;q++){
 
@@ -62,11 +63,11 @@ void draw(){
 	for(int i = 0 ; i < ang.length;i++){
 
 
-	translate(0,noise(i*10.0+frameCount/330.0)*i*300.0);
+	translate((noise(i*14530.0+frameCount/333.17)-0.5)*500.0/(i+400.0),(noise(i*3459.9231+frameCount/330.0)-0.5)*500.0/(i+1.0));
 
-	float l = L[i]+((noise(((frameCount+i*2000.0)/120.0 )-0.51)*(150.0+i/40.0)));
+	float l = L[i]+((noise(((frameCount+i*5000.0)/30.0 )-0.51)*(15.0+i/40.0)));
 
-	stroke(lerpColor(#222B38,#FFF5CD,norm(i,ang.length,0)), (sin((i*10000.0+frameCount*30000.111)*3.0)+1.0)*12.0 );
+	stroke(lerpColor(#222B38,#FFF5CD,norm(i,ang.length,0)), (sin((i*3993.3+frameCount/30.131)*3.02)+1.0)*12.0 );
 
 	ang[i]+=speed[i];	
 	rotate(ang[i]);
@@ -83,7 +84,7 @@ void draw(){
 
 	popMatrix();
 
-	saveFrame("/desk/god/god#####.png");
+	//saveFrame("/desk/god/god#####.png");
 
 }
 
