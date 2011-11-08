@@ -11,7 +11,7 @@ float speedUP;
 
 void setup(){
 
-	size(1280,720,P2D);
+	size(800,600,P2D);
 
 
 
@@ -41,9 +41,12 @@ void setup(){
 void draw(){
 
 	
-	
+	pushStyle();
+        strokeWeight(10);
+        stroke(0);
 	fill(0,45);
 	rect(0,0,width,height);
+        popStyle();
 
 	pushMatrix();
 	translate(noise(frameCount/3.0)*5,noise(frameCount/3.21)*5);
@@ -58,9 +61,12 @@ void draw(){
 	translate(width/2,height/2);
 	for(int i = 0 ; i < ang.length;i++){
 
-	float l = L[i]+((noise(((frameCount+i*20.0)/120.0 )-0.51)*(250.0+i/40.0)));
 
-	stroke(lerpColor(#4B6F30,#FFE785,norm(i,ang.length,0)), (sin((i*200.0+frameCount/300.0)/30.0)+1.0)*12.0 );
+	translate(0,noise(i*1000.0+frameCount/33.0)*i/3.0);
+
+	float l = L[i]+((noise(((frameCount+i*2000.0)/120.0 )-0.51)*(150.0+i/40.0)));
+
+	stroke(lerpColor(#4B6F30,#FFE785,norm(i,ang.length,0)), (sin((i*1000.0+frameCount/4.1)/30.0)+1.0)*12.0 );
 
 	ang[i]+=speed[i];	
 	rotate(ang[i]);
