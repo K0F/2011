@@ -11,7 +11,7 @@ float speedUP;
 
 void setup(){
 
-	size(800,600,P2D);
+	size(1600,900,P2D);
 
 
 
@@ -24,7 +24,7 @@ void setup(){
 	for(int i = 0 ; i < ang.length;i++){
 		ang[i] = 0;
 		L[i] = (200.0)/(i*4.0+1.0);
-		speed[i] = 0.1-i/200.0;
+		speed[i] = 0.1-i/(200.0+i);
 
 	}
 
@@ -34,7 +34,7 @@ void setup(){
 	background(0);
 	stroke(255,10);
 	
-	speedUP = HALF_PI * 1000.0;
+	speedUP = HALF_PI * 3333.3;
 }
 
 
@@ -53,7 +53,7 @@ void draw(){
 
 
 	if(frameRate < 30)
-	speedUP --;
+	//speedUP --;
 
 	for(int q = 0;q< speedUP ;q++){
 
@@ -62,11 +62,11 @@ void draw(){
 	for(int i = 0 ; i < ang.length;i++){
 
 
-	translate(0,noise(i*1000.0+frameCount/33.0)*i/3.0);
+	translate(0,noise(i*10.0+frameCount/330.0)*i*300.0);
 
 	float l = L[i]+((noise(((frameCount+i*2000.0)/120.0 )-0.51)*(150.0+i/40.0)));
 
-	stroke(lerpColor(#4B6F30,#FFE785,norm(i,ang.length,0)), (sin((i*1000.0+frameCount/4.1)/30.0)+1.0)*12.0 );
+	stroke(lerpColor(#222B38,#FFF5CD,norm(i,ang.length,0)), (sin((i*10000.0+frameCount*30000.111)*3.0)+1.0)*12.0 );
 
 	ang[i]+=speed[i];	
 	rotate(ang[i]);
@@ -82,6 +82,8 @@ void draw(){
 }
 
 	popMatrix();
+
+	saveFrame("/desk/god/god#####.png");
 
 }
 
