@@ -1,5 +1,13 @@
+/**
+*  Weird midnight sketch by kof 2011
+*  asemicConstruction, copyleft
+*/
+
 float[] ang,L,speed;
 int num = 10;
+
+
+float speedUP;
 
 void setup(){
 
@@ -15,7 +23,7 @@ void setup(){
 
 	for(int i = 0 ; i < ang.length;i++){
 		ang[i] = 0;
-		L[i] = (200.0)/(i+1.0);
+		L[i] = (200.0)/(i*4.0+1.0);
 		speed[i] = 0.1-i/200.0;
 
 	}
@@ -26,6 +34,7 @@ void setup(){
 	background(0);
 	stroke(255,10);
 	
+	speedUP = HALF_PI * 1000.0;
 }
 
 
@@ -39,7 +48,11 @@ void draw(){
 	pushMatrix();
 	translate(noise(frameCount/3.0)*5,noise(frameCount/3.21)*5);
 
-	for(int q = 0;q<PI*1000/2.0;q++){
+
+	if(frameRate < 30)
+	speedUP --;
+
+	for(int q = 0;q< speedUP ;q++){
 
 	pushMatrix();
 	translate(width/2,height/2);
@@ -47,7 +60,7 @@ void draw(){
 
 	float l = L[i]+((noise(((frameCount+i*20.0)/120.0 )-0.51)*(250.0+i/40.0)));
 
-	stroke(lerpColor(#4B6F30,#F0D207,norm(i,ang.length,0)), (sin((i+frameCount)/3000.0)+1.0)*12.0 );
+	stroke(lerpColor(#4B6F30,#FFE785,norm(i,ang.length,0)), (sin((i*200.0+frameCount/300.0)/30.0)+1.0)*12.0 );
 
 	ang[i]+=speed[i];	
 	rotate(ang[i]);
