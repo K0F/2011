@@ -13,8 +13,6 @@ void setup(){
 
 
 void draw(){
-
-
 	puff.setPix(frameCount);
 }
 
@@ -31,7 +29,6 @@ void mouseDragged(){
 
 void mouseReleased(){
 	puff.mouseUp(mouseX,mouseY);
-
 }
 
 

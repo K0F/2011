@@ -1,8 +1,4 @@
-
 Bender bender;
-
-
-
 
 void setup(){
 	size(320,160,P2D);
@@ -22,7 +18,6 @@ class Bender{
 	PGraphics predloha;
 	PGraphics post;
 
-
 	Bender(){
 		udelejPredlohu(200);
 		predloha.loadPixels();
@@ -33,29 +28,27 @@ class Bender{
 	void draw(){
 		image(predloha,0,0);
 
-		
+
 		for(int i  = 0 ; i < post.pixels.length ; i ++){
 			float br = brightness(predloha.pixels[i]);
 			post.pixels[(int)(noise( (i+frameCount) / PI)*post.pixels.length+post.pixels.length) % post.pixels.length ] = color(noise(color(br))*255);
-			
-//			if(frameCount%300==0){
-//				predloha.pixels[i] = post.pixels[i];
-//			}
+
+			//			if(frameCount%300==0){
+			//				predloha.pixels[i] = post.pixels[i];
+			//			}
 
 		}
 
 		if(frameCount%300==0){
-			
+
 			noiseSeed(frameCount);
 			udelejPredlohu(200);
-			
+
 		}
 
 		image(post,width/2,0);
 
-
 	}
-
 
 	void udelejPredlohu(int _num){
 		predloha = createGraphics(160,160,P2D);
@@ -68,10 +61,7 @@ class Bender{
 			predloha.filter(BLUR,noise(i)+1.0);
 		}
 		predloha.endDraw();
-
 	}
-
-
 }
 
 
