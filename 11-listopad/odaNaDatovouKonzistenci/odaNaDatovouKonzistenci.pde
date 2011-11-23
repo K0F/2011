@@ -49,11 +49,16 @@ void keyPressed(){
 ///////////////////////////////
 void draw(){
 
-	if(negative){
+
+	if(blank){
+
+	background(255);
+	} else if(negative){
 		background(0);
 	}else{
 		background(255);
 	}
+	
 
 	density += 0.000231147713;
 
