@@ -19,36 +19,56 @@ color cn[] = {#000055,#000000,#000000};
 int barvaCnt = 0;
 
 
+
+void init(){
+  
+  
+   
+  frame.removeNotify();
+  frame.setUndecorated(true);
+  
+  frame.addNotify();
+  
+   super.init(); 
+  
+}
+
 ///////////////////////////////
 void setup(){
-	size(700,400,P2D);
+	size(1024,768,P2D);
 	smooth();
 	frameRate(30);
 	noStroke();
 	fill(255);
 	//frameCount = 6710;
+
+frame.setLocation(1600,0);
+	noCursor();
+	
 }
 
 
 boolean blink = false;
 boolean blank = false;
 boolean black = false;
+boolean pause = true;
 
-void keyPressed(){
-	if(key==' '){
-		blink = true;
-
-	}else if(keyCode==ENTER){
-		black = true;
-	}else if(key=='n'){
-		blank=true;
-	}
-
-}
+double ms = 0, offset =0;
 
 ///////////////////////////////
 void draw(){
 
+
+	if(pause){
+		background(0);
+		fill(#FF0000);
+		noStroke();
+		rect(0,0,2,2);
+		offset = millis();
+
+	}else{
+
+	ms = millis() - offset;
 
 	if(blank){
 
@@ -60,7 +80,7 @@ void draw(){
 	}
 	
 
-	density += 0.000231147713;
+	density += 0.0000231147713;
 
 
 	float r2 = (sin(frameCount/5000.01)+1.0)*1.10;	
@@ -130,8 +150,10 @@ void draw(){
 
 	blink = blank = black = false;
 
+	//println(ms);
+
 	// this is for the patient ones ;)
-	if(millis()>(600000)){
+/*	if(ms>(600000)){
 
 		try{
 			Runtime.getRuntime().exec("pkill scsynth");
@@ -142,7 +164,31 @@ void draw(){
 		}  
 	}
 	//saveFrame("/desk/visOhm/vohm#####.png");
+*/
+	}
 
 }
 
 boolean negative = true;
+
+
+
+void keyPressed(){
+	if(key==' '){
+		blink = true;
+
+	}else if(keyCode==ENTER){
+		black = true;
+	}else if(key=='n'){
+		blank=true;
+	}else if(key == 's'){
+		pause = !pause;
+		if(!pause){
+			println("running");
+		}else{
+			println("stopped");
+		}
+	}
+
+}
+
