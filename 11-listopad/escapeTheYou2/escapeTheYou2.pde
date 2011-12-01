@@ -8,7 +8,7 @@ float spread = 0.0033333;
 
 ArrayList planes;
 
-int trailLen = 300;
+int trailLen = 800;
 
 
 
@@ -16,7 +16,7 @@ int trailLen = 300;
 color bckColor = color(#1E1F22);
 
 void setup(){
-	size(900,450,P2D);
+	size(1280,720,P2D);
 
 	noiseSeed(19);
 
@@ -38,6 +38,8 @@ void draw(){
 
 		pl.automate();
 	}
+
+	saveFrame("/desk/had/had####.png");
 
 }
 
@@ -99,7 +101,7 @@ class Plane{
 
 	float r;
 	float maxforce;    // Maximum steering force
-	float maxspeed = 5.0;    // Maximum speed
+	float maxspeed = 30.0;    // Maximum speed
 
 
 	ArrayList trail;
@@ -117,6 +119,31 @@ class Plane{
 
 		for (int i = 0; i< keys.length; i++) {
 			keys[i] = false;
+		}
+
+
+
+	}
+
+
+	void attract(int kolik){
+		int [] sel = new int[kolik];
+		for(int i = 0 ; i < kolik;i++){
+			sel[i] = (int)(noise(i*(id+3.0))*planes.size());
+		}
+
+		for(int i = 0 ; i < kolik;i++){
+			Plane tmp = (Plane)planes.get(sel[i]);
+
+			pos.x += (tmp.pos.x-pos.x)/(300.0+i*30);
+			pos.y += (tmp.pos.y-pos.y)/(300.0+i*30);
+
+			//vel.x -= (tmp.vel.x-vel.x)/30.0;
+			//vel.y -= (tmp.vel.y-vel.y)/30.0;
+
+
+
+		//	sel[i] = (int)(noise(i*(id+3.0))*planes.size());
 		}
 
 
@@ -141,7 +168,7 @@ class Plane{
 	void turnL(){
 
 		//rotate2D(acc,-.1);
-		rotate2D(vel,-radians(10.0/(acc.mag()*10.0+1.0)/(vel.mag()+0.1)));
+		rotate2D(vel,-radians(20.0/(acc.mag()*10.0+1.0)/(vel.mag()+0.1)));
 		vel.mult(0.999);
 
 
@@ -151,7 +178,7 @@ class Plane{
 
 	void turnR(){
 
-		rotate2D(vel,radians(10.0/(acc.mag()*10.0+1.0)/(vel.mag()+0.1)));
+		rotate2D(vel,radians(20.0/(acc.mag()*10.0+1.0)/(vel.mag()+0.1)));
 		vel.mult(0.999);
 
 		rotate2D(acc,-radians((2.1/(vel.mag()*10.0))));
@@ -167,6 +194,14 @@ class Plane{
 		if(pos.y<0)pos.y = height;
 
 	}
+	void bordr2(){
+		
+		if(pos.x>width || pos.x < 0){vel.x *= -0.9; acc.x *= -0.9;}
+		if(pos.y>height || pos.y < 0){vel.y *= -0.9; acc.y *= -0.9;}
+
+
+	}
+
 
 	void checkUser(){
 		if(keys[0] == true) {  //Move the left player up.
@@ -201,6 +236,7 @@ class Plane{
 
 	void computeStep(){
 
+		attract(5);
 
 		acc.mult(.9);
 		vel.add(acc);
@@ -236,13 +272,16 @@ class Plane{
 			//pushMatrix();
 			//translate(cur.x,cur.y);
 			//rotate(atan2(cur.y-pre.y,cur.x-pre.x)+HALF_PI);
-			stroke(#ffffff,map(i,0,trail.size(),3,55));
 
 
-			float shx = (noise((frameCount+sin(frameCount/31.1)*50+i*id)/300.0)-0.5)*50; 
-			float shy = (noise((frameCount+cos(i/30.1)*40+i*id)/313.0)-0.5)*50; 
+			float shy = (noise((frameCount+cos(i/30.1)*40+i*id)/313.0)-0.5)*50;
+			float shx = (noise((frameCount+sin(frameCount/31.1)*50+i*id)/300.0)-0.5)*50;
 
-			if(dist(cur.x,cur.y,pre.x,pre.y)<10)
+			stroke( lerpColor(#E9A51F,#74B8F4, map(atan2( shy+pre.y-cur.y,shx+pre.x-cur.x),-PI,PI,0,1) ) ,map(i,0,trail.size(),8,35));
+
+
+
+			if(dist(cur.x,cur.y,pre.x,pre.y)<700)
 				line(cur.x+shx,cur.y+shy,pre.x+shx,pre.y+shy);
 			//line(2.5,0,2.5,cur.z*10);
 			//line(-2.5,0,-2.5,cur.z*10);
@@ -260,7 +299,7 @@ class Plane{
 
 		plotTrail();
 
-		bordr();
+		bordr2();
 
 
 		/*
