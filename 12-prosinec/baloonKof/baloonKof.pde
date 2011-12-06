@@ -1,5 +1,3 @@
-import processing.opengl.*;
-
 /**
  *       by kof 2011 copyleft
  */
@@ -7,33 +5,47 @@ import processing.opengl.*;
 ////////////////////////////////////////
 ////////  INFO 
 ////////////////////////////////////////
-String name =  "majakovsky.jpg";
-String signature = "<code>";
+String name =  "kof.jpg";
+int scaledown = 3;
+String signature = "John von Neumann";
 String quoteText = "quotes.txt";
 ////////////////////////////////////////
 
-int [] pipeline = {HARD_LIGHT,ADD,SCREEN,SCREEN,DODGE,MULTIPLY,HARD_LIGHT};
+int [] pipeline = {2,6,8,2,6,8,2,6,12,2,13};
 
-float speedGeneral = 0.5;
-float tras = 200.0;
+float speedPipeline = 2.5;
+
+float speedGeneral = 10.5;
+
+float tras = 20.0;
+float al = 40;
 float ubytek = 1.1;
 
-/*
-BLEND - linear interpolation of colours: C = A*factor + B
-ADD - additive blending with white clip: C = min(A*factor + B, 255)
-SUBTRACT - subtractive blending with black clip: C = max(B - A*factor, 0)
-DARKEST - only the darkest colour succeeds: C = min(A*factor, B)
-LIGHTEST - only the lightest colour succeeds: C = max(A*factor, B)
-DIFFERENCE - subtract colors from underlying image.
-EXCLUSION - similar to DIFFERENCE, but less extreme.
-MULTIPLY - Multiply the colors, result will always be darker.
-SCREEN - Opposite multiply, uses inverse values of the colors.
-OVERLAY - A mix of MULTIPLY and SCREEN. Multiplies dark values, and screens light values.
-HARD_LIGHT - SCREEN when greater than 50% gray, MULTIPLY when lower.
-SOFT_LIGHT - Mix of DARKEST and LIGHTEST. Works like OVERLAY, but not as harsh.
-DODGE - Lightens light tones and increases contrast, ignores darks. Called "Color Dodge" in Illustrator and Photoshop.
-BURN - Darker areas are applied, increasing contrast, ignores lights. Called "Color Burn" in Illustrator and Photoshop.
+float skvrneni = 12;
 
+
+int step = 8;
+float blursteep = 1.4;
+
+boolean showText = false;
+boolean drawBackground = true;
+
+///////////////////////////////////////
+/*
+1: BLEND - linear interpolation of colours: C = A*factor + B
+2: ADD - additive blending with white clip: C = min(A*factor + B, 255)
+3: SUBTRACT - subtractive blending with black clip: C = max(B - A*factor, 0)
+4: DARKEST - only the darkest colour succeeds: C = min(A*factor, B)
+5: LIGHTEST - only the lightest colour succeeds: C = max(A*factor, B)
+6: DIFFERENCE - subtract colors from underlying image.
+7: EXCLUSION - similar to DIFFERENCE, but less extreme.
+8: MULTIPLY - Multiply the colors, result will always be darker.
+9: SCREEN - Opposite multiply, uses inverse values of the colors.
+10: OVERLAY - A mix of MULTIPLY and SCREEN. Multiplies dark values, and screens light values.
+11: HARD_LIGHT - SCREEN when greater than 50% gray, MULTIPLY when lower.
+12: SOFT_LIGHT - Mix of DARKEST and LIGHTEST. Works like OVERLAY, but not as harsh.
+13: DODGE - Lightens light tones and increases contrast, ignores darks. Called "Color Dodge" in Illustrator and Photoshop.
+14: BURN - Darker areas are applied, increasing contrast, ignores lights. Called "Color Burn" in Illustrator and Photoshop.
 */
 
 PImage img;
@@ -47,10 +59,8 @@ boolean pause = true;
 
 int pauseLen = 10;
 
-int step = 6;
 PGraphics steps[];
 
-float blursteep = 1.8;
 
 
 void setup() {
@@ -58,7 +68,7 @@ void setup() {
   
   img = loadImage(name);
   
-  size(img.width, img.height,P2D);
+  size(img.width/scaledown, img.height/scaledown,P2D);
   
   noiseSeed(19);
 
@@ -74,9 +84,10 @@ void setup() {
 
   steps = new PGraphics[step];
 
-  textFont(loadFont("SempliceRegular-8.vlw"));
+  //textFont(loadFont(sketchPath+"/data/SempliceRegular.vlw"));
+  textFont(createFont("SempliceRegular",8,false));
   textMode(SCREEN);
-  textAlign(LEFT);
+  textAlign(CENTER);
 
   for (int i =0  ; i < steps.length;i++) {
     steps[i] = createGraphics(width, height, P2D);
@@ -86,10 +97,11 @@ void setup() {
     //steps[i].tint(i%2==0?#FFCCCC:#CCFFAA, 200);
     steps[i].image(img, 0, 0, width, height);
 
-steps[i].strokeWeight(2);
 
-    for (int q = 0;q<width*height;q+=1) {
-      steps[i].stroke(0, random(5*i)+4);
+    for (int q = 0;q<width*height;q+=(int)random(1,120)) {
+      steps[i].strokeWeight(i*3+1);
+
+      steps[i].stroke(0, random(skvrneni*i)+4);
       steps[i].point((int)(q%width), (int)q/width);
     }
 
@@ -108,27 +120,35 @@ steps[i].strokeWeight(2);
 
 
 void draw() {
-  background(0);
+  if(drawBackground)
+ background(0);
 
   for (int i =0  ; i < steps.length;i++) {
-    tint(255, noise((frameCount+i)/speedGeneral)*185-pow(i,ubytek));
+    tint(255, noise((frameCount+i)/speedGeneral)*al-constrain(pow(i,ubytek),0,255));
 
       if(i==0)
     image(steps[i], (noise((frameCount+i^i)/speedGeneral)-0.5)*10.0, random(-2, 2), width, height);
     else
     blend(steps[i],
-    (int)((noise((frameCount+i^i)/speedGeneral)-0.5)*tras), (int)random(-tras/2., tras/2.),
+    (int)((noise((frameCount+i^i)/speedGeneral)-0.5)*tras), (int)random(-3.,3.),
     width,height,
     0, 0,
     width, height,
-    pipeline[(int)(noise((frameCount+i)/(speedGeneral+10.))*pipeline.length)]);
+    pipeline[(int)(noise((frameCount+i)/(speedPipeline))*pipeline.length)]);
     
   }
 
   noTint();
+  
+  
+  if(showText) renderText();
 
+}
+
+void renderText(){
+ 
   if (t%(txt[sel].length()*8)==0) {
-    t= 1;
+    t= 2;
 
     sel++;
 
@@ -157,9 +177,9 @@ void draw() {
     else {
       fill(255);
     }
-    //text(sel+": "+txt[sel], 10, height - 80, width-20, 130);
+    text(txt[sel], 10, height - 80, width-20, 130);
    
-    //text(signature, width/2, height-15);
+    text(signature, width/2, height-15);
   }
   else {
     p++;
@@ -170,7 +190,7 @@ void draw() {
       p=0;
       pause = false;
     }
-  }
+  } 
 }
 
 
