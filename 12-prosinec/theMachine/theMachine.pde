@@ -1,9 +1,8 @@
 
-int num = 800;
+int num = 20;
 
 ArrayList bases;
 
-int frameLen = 1200;
 
 void setup(){
 
@@ -24,13 +23,14 @@ void setup(){
 void draw(){
 	background(250);
 
-	for(int T = 0 ; T < frameLen ; T ++)
 	for(int i = 0 ; i < bases.size() ; i ++){
 		Base current = (Base)bases.get(i);
 		current.act();
 		current.plot();
 	}
 	
+	
+/*
 	for(int i = 0 ; i < bases.size() ; i ++){
 		Base current = (Base)bases.get(i);
 		current.animStep();
@@ -39,21 +39,23 @@ void draw(){
 	//frameLen++;
 
 	saveFrame("/desk/rostlinka/rostlina#####.png");
+*/
 }
+
 
 
 class Base{
 	PVector pos;
 	PVector vel;
 	
-	PVector code[] = new PVector[33];
+	PVector code[] = new PVector[100];
 
 	int id;
 
 	float speed = 10.0;
 
 
-	float timeSpread = 3.0;
+	float timeSpread = 3000.0;
 
 	float time;
 	float step;
@@ -63,34 +65,43 @@ class Base{
 
 		reset();
 		animStep();	
-
-		
-
 	}
 
 	void animStep(){
 		reset();
 		speed += 1;
 		timeSpread += 0.00001;
-
 	}
-
 
 	void reset(){
 		
 		time = 0.1;
 		step = noise(id)/1000.0*timeSpread;
 
-		pos = new PVector(width/3*2,height);
+		pos = new PVector(random(height),random(height));
 		vel = new PVector(0,0);
 
 		for(int i = 0 ; i < code.length;i++){
 		
 			
-			code[i] = new PVector(0,-1, (noise(i*id)*2-1.0) / speed );
+			code[i] = new PVector(0,-1, (noise(i*(id+1.0))*2-1.0) / speed );
 
 			
 		}
+
+	}
+
+	void bordr(){
+
+		if(pos.x > width || pos.x < 0)
+		for(int i = 0 ; i < code.length;i++)
+		code[i].x *= -1.0;
+
+		if(pos.y > height || pos.y < 0)
+		for(int i = 0 ; i < code.length;i++)
+		code[i].y *= -1.0;
+
+
 
 	}
 
@@ -99,24 +110,50 @@ class Base{
 		time += step;
 
  		for(int i = 0 ; i < code.length;i++){
-			vel.add(code[i]);
-			rotate2D(code[i], code[i].z );
+		
+		rotate2D(code[i], code[i].z );
+		vel.add(code[i]);
+			
 		}
-		vel.normalize();
 
+
+		
+		vel.normalize();
 		pos.add(vel);
 
 
+		bordr();
+
+
+
+		for(int i = 0 ; i < bases.size() ; i++ ){
+			Base b = (Base)bases.get(i);
+			if(dist(pos.x,pos.y,b.pos.x,b.pos.y)<100){
+				repulse(b);
+
+			}
+
+		}
 		
-		int ran = (int)(noise(time*id+123)*bases.size());	
-		Base b = (Base)bases.get(ran);
+		//int ran = (int)(noise(time*id+123)*bases.size());	
+		//Base b = (Base)bases.get(ran);
 
 		//for (int i =0 ; i < code.length;i++){ 	
-		int r = (int)(noise(id*time*id)*(code.length));
-		code[r].add(b.vel);
+		//int r = (int)(noise(id*time*id)*(code.length));
+		//code[r].add(b.vel);
 //		code[i].normalize();
 		//}
 		
+	}
+
+	void repulse(Base _b){
+		for(int i =0 ; i < code.length;i++){
+			
+			PVector.sub(code[i],code[i].cross(_b.code[i]));
+			code[i].normalize();
+		}
+		
+
 	}
 
 	void plot(){
@@ -124,10 +161,32 @@ class Base{
 
 		translate(pos.x,pos.y);
 		
-		
+			
+
+		pushMatrix();	
+		rectMode(CENTER);
 		rotate(atan2(vel.y,vel.x)+HALF_PI);
-		stroke(0,3);
-		line(0,0,0,-1);
+		stroke(0,160);
+		rect(0,0,5,10);
+		popMatrix();
+
+
+		int y = -20;
+		int x = -5;
+		for(int i =0 ;i<code.length;i++){
+		stroke(atan2(code[i].y,code[i].x)*255);
+		
+		point(x,y);
+
+		x++;
+
+		if(i%10==0){
+		y++;
+		x = -5;
+		}
+		}
+
+		
 		popMatrix();
 		
 	}
