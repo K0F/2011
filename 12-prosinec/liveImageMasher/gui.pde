@@ -5,19 +5,25 @@ class GUI {
 
   String DEFAULT_NAMES[] = {
     "x", 
-    "y", 
-    "tras", 
-    "shake_speed"
+    "y",
+    "blink_speed",
+    "shake_speed",
+    "shake", 
+    "al",
+    "ubytek"
   };
 
   float mins[] = {
-    0, 0, 0, 0
+    0, height, 300,300,300, 1, 1
   };
   float maxs[] = {
-    127, 127, 127, 127
+    width, 0,0.1,0.1, 0.1, 255, 2.
+  };
+  float defaults[] = {
+   width/2-150,30,3,30,30,200,1.4
   };
 
-  int rozpal = 15;
+  int rozpal = 12;
 
   ArrayList controllers;
   TheEngine parent;
@@ -102,9 +108,21 @@ class Controller {
       rohy[i].endDraw();
     }
 
-    pos = new PVector(10, height/2);
+    pos = new PVector(20, height-90);
 
     initSliders();
+    
+    for(int i =0 ;i<10;i++)
+      addToPipeline();
+    
+    
+  }
+  
+  void addToPipeline(){
+    ImageMasher tmp = (ImageMasher)engine.getUnit(id);
+    tmp.addFilter((int)random(14));
+    println(tmp.pipeline.size());
+    
   }
 
   void harvestFields() {
@@ -134,7 +152,7 @@ class Controller {
 
     for (int i =0;i<ctlFields.size();i++) {
       Field tmp = (Field)ctlFields.get(i);
-      sliders.add(new Slider(this, tmp.getName(), 0, parent.rozpal*i, parent.mins[i], parent.maxs[i]));
+      sliders.add(new Slider(this, tmp.getName(), 0, parent.rozpal*i, parent.mins[i], parent.maxs[i],parent.defaults[i]));
     }
   }
 
@@ -155,7 +173,7 @@ class Controller {
   void drawBorder() {
     int cx = -10;
     int cy = -12;
-    int wx = 50;
+    int wx = 85;
 
     stroke(255);
 
@@ -201,14 +219,17 @@ class Slider {
   int w;
   boolean over;
 
-  color overCol = color(#22FF11);
+  color overCol = color(#FFCC00);
   color normCol = color(#FFFFFF);
 
   float absX;
   float absY;
+  
+  float def;
 
 
-  Slider(Controller _parent, String _name, float _x, float _y, float _minval, float _maxval) {
+  Slider(Controller _parent, String _name, float _x, float _y, float _minval, float _maxval,float _def) {
+    def = _def;
     parent = _parent;
     name = ""+_name;
     pos = new PVector(_x, _y);
@@ -217,6 +238,9 @@ class Slider {
     absX = pos.x+parent.pos.x;
     absY = pos.y+parent.pos.y;
     w = parent.w;
+    
+    val = _def;
+    
   }
 
   void draw() {
@@ -251,7 +275,7 @@ class Slider {
     text(name, absX+w+10, absY);
     noFill();
     line(absX, absY, w+absX, absY);
-    rect(absX+val, absY, 3, 5);
+    rect(map(val,minval,maxval,absX,absX+w), absY, 3, 5);
   }
 
 

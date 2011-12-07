@@ -6,8 +6,7 @@
 
 class ImageMasher implements Runnable{
 
-
-	ArrayList pipeline;
+	ArrayList pipeline = new ArrayList();
 	
 	PVector pos;
 
@@ -15,11 +14,11 @@ class ImageMasher implements Runnable{
 
 	int scaledown = 1;
 
-	float speedPipeline = 2.5;
+	float blink_speed = 2.5;
 
-	float speedGeneral = 10.5;
+	float shake_speed = 10.5;
 
-	float tras = 20.0;
+	float shake = 20.0;
 	float al = 40;
 	float ubytek = 1.1;
 
@@ -47,8 +46,8 @@ class ImageMasher implements Runnable{
 	10: OVERLAY - A mix of MULTIPLY and SCREEN. Multiplies dark values, and screens light values.
 	11: HARD_LIGHT - SCREEN when greater than 50% gray, MULTIPLY when lower.
 	12: SOFT_LIGHT - Mix of DARKEST and LIGHTEST. Works like OVERLAY, but not as harsh.
-	13: DODGE - Lightens light tones and increases contrast, ignores darks. Called "Color Dodge" in Illustrator and Photoshop.
-	14: BURN - Darker areas are applied, increasing contrast, ignores lights. Called "Color Burn" in Illustrator and Photoshop.
+	13: DODGE - Lightens light tones and increases conshaket, ignores darks. Called "Color Dodge" in Illustrator and Photoshop.
+	14: BURN - Darker areas are applied, increasing conshaket, ignores lights. Called "Color Burn" in Illustrator and Photoshop.
 	 */
 
 	PImage img;
@@ -73,6 +72,8 @@ class ImageMasher implements Runnable{
 		id = _id;
                 x = width/2;
                 y = height/2;
+                
+                
 		
 
 		// obligatory 19
@@ -86,11 +87,18 @@ class ImageMasher implements Runnable{
 		id = _id;
 		x = width/2;
                 y = height/2;
+                
+               
 
 	// obligatory 19
 		noiseSeed(19);
 
 	}
+
+        void addFilter(int _in){
+            println("adding filter "+pipeline.size());
+            pipeline.add(_in);
+        }
 
 	public boolean isReady(){
 		return ready;
@@ -108,8 +116,8 @@ class ImageMasher implements Runnable{
 		//render blurring here
 		preRender();
 
-		pipeline = new ArrayList();
-		pipeline.add(1);
+		//pipeline = new ArrayList();
+		//pipeline.add(1);
 
 	}
 
@@ -169,19 +177,21 @@ class ImageMasher implements Runnable{
 
                
                
+                 if(pipeline.size()>0)               
 		for (int i =0  ; i < steps.length;i++) {
-			tint(255, noise((frameCount+i)/speedGeneral)*al-constrain(pow(i,ubytek),0,255));
+			tint(255, noise((frameCount+i)/shake_speed)*al-constrain(pow(i,ubytek),0,255));
 
-			int curr = (int)(Integer)pipeline.get((int)(noise((frameCount+i)/(speedPipeline))*pipeline.size()));
+			int curr = (int)(Integer)pipeline.get((int)(noise((frameCount+i)/(blink_speed))*pipeline.size()));
 
 			if(i==0)
-				image(steps[i], (noise((frameCount+i^i)/speedGeneral)-0.5)*10.0+x, random(-2, 2)+y, steps[i].width, steps[i].height);
+				image(steps[i], (noise((frameCount+i^i)/shake_speed)-0.5)*10.0+x, random(-2, 2)+y, steps[i].width, steps[i].height);
 			else
 				blend(steps[i],
-						(int)((noise((frameCount+i^i)/speedGeneral)-0.5)*tras)+(int)x, (int)random(-3.,3.)+(int)y,
-						steps[i].width,steps[i].height,
-						0+(int)x, 0+(int)y,
+                                                0,0,
 						steps[i].width, steps[i].height,
+						(int)((noise((frameCount+i^i)/shake_speed)-0.5)*shake)+(int)x, (int)y+(int)((noise((frameCount+2000+i^i)/shake_speed)-0.5)*shake),
+						steps[i].width,steps[i].height,
+						
 						curr);
 
 		}

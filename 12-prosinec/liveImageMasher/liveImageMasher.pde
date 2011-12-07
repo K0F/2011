@@ -9,7 +9,7 @@ TheEngine engine;
 
 void setup() {
  
-  size(1600, 900 ,P2D);
+  size(640, 480 ,P2D);
 
   engine = new TheEngine();
 

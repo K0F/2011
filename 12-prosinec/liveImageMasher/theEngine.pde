@@ -19,7 +19,7 @@ class TheEngine{
 	}
 
 	void addImage(PImage _src){
-
+                unit.add(new ImageMasher(unit.size(),_src));
 		gui.addController(unit.size()-1);
 		thread = new Thread((ImageMasher)unit.get(unit.size()-1));
 		thread.start();
