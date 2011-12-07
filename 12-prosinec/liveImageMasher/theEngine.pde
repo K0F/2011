@@ -14,35 +14,43 @@ class TheEngine{
 
 
 	TheEngine(){
-		gui = new GUI();
 		unit = new ArrayList();
+		gui = new GUI(this);
 	}
 
 	void addImage(PImage _src){
-		unit.add(new ImageMasher(unit.size(),_src));
+
+		gui.addController(unit.size()-1);
 		thread = new Thread((ImageMasher)unit.get(unit.size()-1));
 		thread.start();
 	}
 
 	void addImage(String _name){
-		ImageMasher tmp = new ImageMasher(unit.size(),_name);
- 
-		unit.add(tmp);
+
+		unit.add(new ImageMasher(unit.size(),_name));
+		gui.addController(unit.size()-1);
 		thread = new Thread((ImageMasher)unit.get(unit.size()-1));
 		thread.start();
 
 	}
 
+	ImageMasher getUnit(int _which){
+		return (ImageMasher)unit.get(_which);
+	}
+
 	void draw(){
 
-		for(int i = 0 ; i < unit.size(); i++){
 
+		for(int i = 0 ; i < unit.size(); i++){
 			ImageMasher one = (ImageMasher)unit.get(i);
 
 			if(one.ready)
 				one.draw();
 
 		}
+
+		gui.draw();
+
 	}
 
 }
