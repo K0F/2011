@@ -1,12 +1,17 @@
+
+
 /* Image Masher class
 *	live visual mashing by kof 2011
 */
 
 class ImageMasher implements Runnable{
 
+
 	ArrayList pipeline;
 	
 	PVector pos;
+
+        float x,y;
 
 	int scaledown = 1;
 
@@ -63,19 +68,24 @@ class ImageMasher implements Runnable{
 	int id;
 
 	ImageMasher(int _id,String _filename){
+
 		name = ""+_filename;
 		id = _id;
-		pos = new PVector(width/2,height/2);
+                x = width/2;
+                y = height/2;
+		
 
 		// obligatory 19
 		noiseSeed(19);
 
 	}
 
+
 	ImageMasher(int _id,PImage _img){
 		img = _img;
 		id = _id;
-		pos = new PVector(width/2,height/2);
+		x = width/2;
+                y = height/2;
 
 	// obligatory 19
 		noiseSeed(19);
@@ -108,7 +118,8 @@ class ImageMasher implements Runnable{
 	*	set new position to image
 	*/
 	void setPos(float _x,float _y){
-		pos = new PVector(_x,_y);
+		x=_x;
+                y = _y;
 
 	}
 
@@ -156,27 +167,27 @@ class ImageMasher implements Runnable{
 		if(drawBackground)
 			background(0);
 
-
-
+               
+               
 		for (int i =0  ; i < steps.length;i++) {
 			tint(255, noise((frameCount+i)/speedGeneral)*al-constrain(pow(i,ubytek),0,255));
 
 			int curr = (int)(Integer)pipeline.get((int)(noise((frameCount+i)/(speedPipeline))*pipeline.size()));
 
 			if(i==0)
-				image(steps[i], (noise((frameCount+i^i)/speedGeneral)-0.5)*10.0, random(-2, 2), steps[i].width, steps[i].height);
+				image(steps[i], (noise((frameCount+i^i)/speedGeneral)-0.5)*10.0+x, random(-2, 2)+y, steps[i].width, steps[i].height);
 			else
 				blend(steps[i],
-						(int)((noise((frameCount+i^i)/speedGeneral)-0.5)*tras), (int)random(-3.,3.),
+						(int)((noise((frameCount+i^i)/speedGeneral)-0.5)*tras)+(int)x, (int)random(-3.,3.)+(int)y,
 						steps[i].width,steps[i].height,
-						0, 0,
+						0+(int)x, 0+(int)y,
 						steps[i].width, steps[i].height,
 						curr);
 
 		}
+               
 
 		noTint();
-
-
 	}
+  
 }
