@@ -31,8 +31,15 @@ class Controller {
   Controller(GUI _parent, int _id) {
     parent = _parent;
     engine = parent.parent;
+    
 
     harvestFields();
+    
+    
+    // randomize default vaues for each picture
+    for(int i =0  ; i < parent.defaults.length;i++)
+    if(!parent.DEFAULT_NAMES[i].equals("x")||!parent.DEFAULT_NAMES[i].equals("y"))
+      parent.defaults[i] *= random(.7,1.);
     
     id = _id;
 
@@ -105,9 +112,9 @@ class Controller {
     myClass = unit.getClass();
     fields = myClass.getDeclaredFields();
 
-    for (int i = 0; i < fields.length; i++) {
-      for (int ii = 0; ii < parent.DEFAULT_NAMES.length; ii++) {
 
+      for (int ii = 0; ii < parent.DEFAULT_NAMES.length; ii++) {
+        for (int i = 0; i < fields.length; i++) {
         if (fields[i].getName().equals(parent.DEFAULT_NAMES[ii])) {
           //println("got "+parent.DEFAULT_NAMES[ii]);
          

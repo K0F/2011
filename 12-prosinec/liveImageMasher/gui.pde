@@ -9,59 +9,65 @@ class GUI {
   ///////////////////////////////////
   
   String DEFAULT_NAMES[] = {
-    "x", 
-    "y",
     "R",
     "G",
     "B",
+    "alpha",
     "blink_speed",
     "shake_speed",
     "amplitude", 
-    "alpha",
-    "effect_smooth"
+    "effect_smooth",
+    "x", 
+    "y",
+    
   };
 
   ///////////////////////////////////
   float defaults[] = {
+   255,
+   255,
+   255,
+   100.,
+   3.0,
+   40.,
+   20.,
+   
+   1.4,
    width/2-215,
    25,
-   255,
-   255,
-   255,
-   30.0+random(-1,1),
-   40.+random(-1,1),
-   20.+random(-1,1),
-   120.,
-   1.4
+   
   };
   ///////////////////////////////////
   
   float mins[] = {
     0,
+    0,
+    0,
+    0.1,
+    300,
+    300,
+    1,
+    0.8,
+     0,
     height,
-    0,
-    0,
-    0,
-    300,
-    300,
-    1,
-    1,
-    0.8
+   
   };
   
   ///////////////////////////////////
   
   float maxs[] = {
-    width,
-    -300,
     255,
     255,
     255,
+    255,
+   
     1,
     1,
     100,
-    255,
-    1.8
+    1.8,
+     width,
+    -300,
+   
   };
   
   
@@ -96,6 +102,8 @@ class GUI {
     textFont(loadFont("SempliceRegular.vlw"));
     textMode(SCREEN);
     textAlign(LEFT);
+    
+
 
     resetControllers();
   }
