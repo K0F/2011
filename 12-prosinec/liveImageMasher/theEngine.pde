@@ -4,53 +4,56 @@
  */
 
 
-class TheEngine{
+class TheEngine {
 
-	ArrayList unit;
-	ArrayList names;
-	GUI gui;
+  ArrayList unit;
+  ArrayList names;
+  GUI gui;
 
-	Thread thread; 
-
-
-	TheEngine(){
-		unit = new ArrayList();
-		gui = new GUI(this);
-	}
-
-	void addImage(PImage _src){
-                unit.add(new ImageMasher(unit.size(),_src));
-		gui.addController(unit.size()-1);
-		thread = new Thread((ImageMasher)unit.get(unit.size()-1));
-		thread.start();
-	}
-
-	void addImage(String _name){
-
-		unit.add(new ImageMasher(unit.size(),_name));
-		gui.addController(unit.size()-1);
-		thread = new Thread((ImageMasher)unit.get(unit.size()-1));
-		thread.start();
-
-	}
-
-	ImageMasher getUnit(int _which){
-		return (ImageMasher)unit.get(_which);
-	}
-
-	void draw(){
+  Thread thread; 
 
 
-		for(int i = 0 ; i < unit.size(); i++){
-			ImageMasher one = (ImageMasher)unit.get(i);
+  int[] layoutX = {
+    20, 420
+  };
+  int[] layoutY = {
+    height-130, height-130
+  };
 
-			if(one.ready)
-				one.draw();
+  TheEngine() {
+    unit = new ArrayList();
+    gui = new GUI(this);
+  }
 
-		}
+  void addImage(PImage _src) {
+    unit.add(new ImageMasher(unit.size(), _src));
+    gui.addController(unit.size()-1);
+    thread = new Thread((ImageMasher)unit.get(unit.size()-1));
+    thread.start();
+  }
 
-		gui.draw();
+  void addImage(String _name) {
 
-	}
+    unit.add(new ImageMasher(unit.size(), _name));
+    gui.addController(unit.size()-1);
+    thread = new Thread((ImageMasher)unit.get(unit.size()-1));
+    thread.start();
+  }
 
+  ImageMasher getUnit(int _which) {
+    return (ImageMasher)unit.get(_which);
+  }
+
+  void draw() {
+
+    for (int i = 0 ; i < unit.size(); i++) {
+      ImageMasher one = (ImageMasher)unit.get(i);
+
+      if (one.ready)
+        one.draw();
+    }
+
+    gui.draw();
+  }
 }
+

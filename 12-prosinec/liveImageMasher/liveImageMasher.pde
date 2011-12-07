@@ -7,20 +7,28 @@
 
 TheEngine engine;
 
+
+
 void setup() {
  
   size(640, 480 ,P2D);
 
   engine = new TheEngine();
-
-  engine.addImage("kof.jpg");
+  
+  engine.addImage("vertov2.jpg");
+  engine.addImage("vertov3.jpg");
+  
+  background(0);
 
 }
 
 
 void draw() {
-	background(0);
- 
+        rectMode(CORNER);
+        noStroke();
+	fill(0,5);
+        rect(0,0,width,height);
+        
 	engine.draw(); 
 
 }
