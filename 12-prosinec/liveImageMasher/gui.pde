@@ -8,30 +8,45 @@ class GUI {
     "y",
     "blink_speed",
     "shake_speed",
-    "shake", 
-    "al",
-    "ubytek"
+    "amplitude", 
+    "alpha",
+    "effect_smooth"
   };
 
   float mins[] = {
-    0, height, 300,300,300, 1, 1
+    0, height, 300,300,1, 1, 0.1
   };
   float maxs[] = {
-    width, 0,0.1,0.1, 0.1, 255, 2.
+    width, 0,0.1,0.1, 50, 255, 1.8
   };
   float defaults[] = {
-   width/2-150,30,3,30,30,200,1.4
+   width/2-150,30,3,30,30,200,0.1
+  };
+  
+  
+  String BLEND_NAMES [] = {
+    "BLEND",
+    "ADD",
+    "SUBTRACT",
+    "DARKEST",
+    "LIGHTEST",
+    "DIFFERENCE",
+    "EXCLUSION",
+    "MULTIPLY",
+    "SCREEN",
+    "OVERLAY",
+    "HARD_LIGHT",
+    "SOFT_LIGHT",
+    "DODGE",
+    "BURN"
   };
 
-  int rozpal = 12;
+  int rozpalpha = 12;
 
   ArrayList controllers;
   TheEngine parent;
 
   GUI(TheEngine _parent) {
-
-
-
     parent = _parent;
     noSmooth();
     textFont(createFont("SempliceRegular", 9, false));
@@ -121,7 +136,7 @@ class Controller {
   void addToPipeline(){
     ImageMasher tmp = (ImageMasher)engine.getUnit(id);
     tmp.addFilter((int)random(14));
-    println(tmp.pipeline.size());
+    //println(tmp.pipeline.size());
     
   }
 
@@ -152,7 +167,7 @@ class Controller {
 
     for (int i =0;i<ctlFields.size();i++) {
       Field tmp = (Field)ctlFields.get(i);
-      sliders.add(new Slider(this, tmp.getName(), 0, parent.rozpal*i, parent.mins[i], parent.maxs[i],parent.defaults[i]));
+      sliders.add(new Slider(this, tmp.getName(), 0, parent.rozpalpha*i, parent.mins[i], parent.maxs[i],parent.defaults[i]));
     }
   }
 
@@ -163,7 +178,7 @@ class Controller {
 
       try {
 
-        tmp.set(unit, s.val);
+        tmp.set(unit, s.valpha);
       }
       catch(IllegalAccessException e) {
       }
@@ -181,18 +196,18 @@ class Controller {
     image(rohy[1], pos.x+w+wx+cx, pos.y+cy);
 
 
-    image(rohy[2], pos.x+w+wx+cx, pos.y+sliders.size()*parent.rozpal+cy);
+    image(rohy[2], pos.x+w+wx+cx, pos.y+sliders.size()*parent.rozpalpha+cy);
 
 
-    image(rohy[3], pos.x+cx, pos.y+sliders.size()*parent.rozpal+cy);
+    image(rohy[3], pos.x+cx, pos.y+sliders.size()*parent.rozpalpha+cy);
 
-    // horizontal
+    // horizontalpha
     line(pos.x+cx+roh.width, pos.y+cy, pos.x+cx+wx+w, pos.y+cy);
-    line(pos.x+cx+roh.width, pos.y+cy+parent.rozpal*sliders.size()+roh.height-1, pos.x+cx+wx+w, pos.y+cy+parent.rozpal*sliders.size()+roh.height-1);
+    line(pos.x+cx+roh.width, pos.y+cy+parent.rozpalpha*sliders.size()+roh.height-1, pos.x+cx+wx+w, pos.y+cy+parent.rozpalpha*sliders.size()+roh.height-1);
 
-    // vertical
-    line(pos.x+cx, pos.y+cy+roh.height, pos.x+cx, pos.y+cy+parent.rozpal*sliders.size() );
-    line(pos.x+cx+wx+roh.width+w-1, pos.y+cy+roh.height, pos.x+cx+wx+roh.width+w-1, pos.y+cy+parent.rozpal*sliders.size() );
+    // verticalpha
+    line(pos.x+cx, pos.y+cy+roh.height, pos.x+cx, pos.y+cy+parent.rozpalpha*sliders.size() );
+    line(pos.x+cx+wx+roh.width+w-1, pos.y+cy+roh.height, pos.x+cx+wx+roh.width+w-1, pos.y+cy+parent.rozpalpha*sliders.size() );
   }
 
   void draw() {
@@ -212,8 +227,8 @@ class Controller {
 
 class Slider {
   Controller parent;
-  float val;
-  float minval, maxval;
+  float valpha;
+  float minvalpha, maxvalpha;
   PVector pos;
   String name;
   int w;
@@ -228,18 +243,18 @@ class Slider {
   float def;
 
 
-  Slider(Controller _parent, String _name, float _x, float _y, float _minval, float _maxval,float _def) {
+  Slider(Controller _parent, String _name, float _x, float _y, float _minvalpha, float _maxvalpha,float _def) {
     def = _def;
     parent = _parent;
     name = ""+_name;
     pos = new PVector(_x, _y);
-    minval = _minval;
-    maxval = _maxval;
+    minvalpha = _minvalpha;
+    maxvalpha = _maxvalpha;
     absX = pos.x+parent.pos.x;
     absY = pos.y+parent.pos.y;
     w = parent.w;
     
-    val = _def;
+    valpha = _def;
     
   }
 
@@ -252,7 +267,7 @@ class Slider {
 
 
     if (over&&mousedown) {
-      val = map(mouseX, absX, w+absX, minval, maxval);
+      valpha = map(mouseX, absX, w+absX, minvalpha, maxvalpha);
     }
 
     if (parent.ready) {
@@ -275,7 +290,7 @@ class Slider {
     text(name, absX+w+10, absY);
     noFill();
     line(absX, absY, w+absX, absY);
-    rect(map(val,minval,maxval,absX,absX+w), absY, 3, 5);
+    rect(map(valpha,minvalpha,maxvalpha,absX,absX+w), absY, 3, 5);
   }
 
 

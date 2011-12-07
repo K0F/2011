@@ -1,7 +1,7 @@
 
 
 /* Image Masher class
-*	live visual mashing by kof 2011
+*	live visualpha mashing by kof 2011
 */
 
 class ImageMasher implements Runnable{
@@ -12,15 +12,15 @@ class ImageMasher implements Runnable{
 
         float x,y;
 
-	int scaledown = 1;
+	int scalphaedown = 1;
 
 	float blink_speed = 2.5;
 
 	float shake_speed = 10.5;
 
-	float shake = 20.0;
-	float al = 40;
-	float ubytek = 1.1;
+	float amplitude = 20.0;
+	float alpha = 40;
+	float effect_smooth = 1.1;
 
 	float skvrneni = 12;
 
@@ -41,13 +41,13 @@ class ImageMasher implements Runnable{
 	5: LIGHTEST - only the lightest colour succeeds: C = max(A*factor, B)
 	6: DIFFERENCE - subtract colors from underlying image.
 	7: EXCLUSION - similar to DIFFERENCE, but less extreme.
-	8: MULTIPLY - Multiply the colors, result will always be darker.
-	9: SCREEN - Opposite multiply, uses inverse values of the colors.
-	10: OVERLAY - A mix of MULTIPLY and SCREEN. Multiplies dark values, and screens light values.
+	8: MULTIPLY - Multiply the colors, result will alphaways be darker.
+	9: SCREEN - Opposite multiply, uses inverse valphaues of the colors.
+	10: OVERLAY - A mix of MULTIPLY and SCREEN. Multiplies dark valphaues, and screens light valphaues.
 	11: HARD_LIGHT - SCREEN when greater than 50% gray, MULTIPLY when lower.
 	12: SOFT_LIGHT - Mix of DARKEST and LIGHTEST. Works like OVERLAY, but not as harsh.
-	13: DODGE - Lightens light tones and increases conshaket, ignores darks. Called "Color Dodge" in Illustrator and Photoshop.
-	14: BURN - Darker areas are applied, increasing conshaket, ignores lights. Called "Color Burn" in Illustrator and Photoshop.
+	13: DODGE - Lightens light tones and increases conshaket, ignores darks. Calphaled "Color Dodge" in Illustrator and Photoshop.
+	14: BURN - Darker areas are applied, increasing conshaket, ignores lights. Calphaled "Color Burn" in Illustrator and Photoshop.
 	 */
 
 	PImage img;
@@ -96,7 +96,7 @@ class ImageMasher implements Runnable{
 	}
 
         void addFilter(int _in){
-            println("adding filter "+pipeline.size());
+            //println("adding filter "+pipeline.size());
             pipeline.add(_in);
         }
 
@@ -107,8 +107,8 @@ class ImageMasher implements Runnable{
 	void run(){
 		img = loadImage(name);
 
-		while(img.width/(scaledown+.0)>300){
-			scaledown++;
+		while(img.width/(scalphaedown+.0)>300){
+			scalphaedown++;
 		}
 
 		steps = new PGraphics[step];
@@ -136,25 +136,25 @@ class ImageMasher implements Runnable{
 	*/
 	void preRender(){
 		for (int i =0  ; i < steps.length;i++) {
-			steps[i] = createGraphics(img.width/scaledown, img.height/scaledown, P2D);
+			steps[i] = createGraphics(img.width/scalphaedown, img.height/scalphaedown, P2D);
 			steps[i].beginDraw();
 
 
 			//steps[i].tint(i%2==0?#FFCCCC:#CCFFAA, 200);
-			steps[i].image(img, 0, 0, img.width/scaledown, img.height/scaledown);
+			steps[i].image(img, 0, 0, img.width/scalphaedown, img.height/scalphaedown);
 
 
-			for (int q = 0;q<img.width/scaledown*img.height/scaledown;q+=(int)random(1,120)) {
+			for (int q = 0;q<img.width/scalphaedown*img.height/scalphaedown;q+=(int)random(1,120)) {
 				steps[i].strokeWeight(i*3+1);
 
 				steps[i].stroke(0, random(skvrneni*i)+4);
-				steps[i].point((int)(q%img.width/scaledown), (int)q/img.width/scaledown);
+				steps[i].point((int)(q%img.width/scalphaedown), (int)q/img.width/scalphaedown);
 			}
 
 			steps[i].stroke(0);
 			steps[i].noFill();
 			steps[i].strokeWeight(20);
-			steps[i].rect(0, 0, img.width/scaledown, img.height/scaledown);
+			steps[i].rect(0, 0, img.width/scalphaedown, img.height/scalphaedown);
 
 			if (i>0)
 				steps[i].filter(BLUR, (pow(i, blursteep)));
@@ -168,7 +168,7 @@ class ImageMasher implements Runnable{
 
 
 	/**
-	*	draw visuals
+	*	draw visualphas
 	*/
 	void draw(){
 
@@ -179,17 +179,17 @@ class ImageMasher implements Runnable{
                
                  if(pipeline.size()>0)               
 		for (int i =0  ; i < steps.length;i++) {
-			tint(255, noise((frameCount+i)/shake_speed)*al-constrain(pow(i,ubytek),0,255));
+			tint(255, noise((frameCount+i)/shake_speed)*alpha-constrain(pow(i,effect_smooth),0,255));
 
 			int curr = (int)(Integer)pipeline.get((int)(noise((frameCount+i)/(blink_speed))*pipeline.size()));
 
 			if(i==0)
-				image(steps[i], (noise((frameCount+i^i)/shake_speed)-0.5)*10.0+x, random(-2, 2)+y, steps[i].width, steps[i].height);
+				image(steps[i], (noise((frameCount+i^i)/shake_speed)-0.5)*amplitude+x,y+((noise((frameCount+2000+i^i)/shake_speed)-0.5)*amplitude), steps[i].width, steps[i].height);
 			else
 				blend(steps[i],
                                                 0,0,
 						steps[i].width, steps[i].height,
-						(int)((noise((frameCount+i^i)/shake_speed)-0.5)*shake)+(int)x, (int)y+(int)((noise((frameCount+2000+i^i)/shake_speed)-0.5)*shake),
+						(int)((noise((frameCount+i^i)/shake_speed)-0.5)*amplitude)+(int)x, (int)y+(int)((noise((frameCount+2000+i^i)/shake_speed)-0.5)*amplitude),
 						steps[i].width,steps[i].height,
 						
 						curr);
