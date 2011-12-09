@@ -63,8 +63,8 @@ void draw(){
 
 			pushMatrix();
 
-			y1 += cos((s+i)/30.0+frameCount/30.0)+(map(graph[i],mn,mx,0,R) - y1) / s;
-			y2 += cos((s+i)/30.0+frameCount/30.0)+(map(graph[i-1],mn,mx,0,R) - y2) / s;
+			y1 += (map(graph[i],mn,mx,0,R) - y1) / s;
+			y2 += (map(graph[i-1],mn,mx,0,R) - y2) / s;
 
 
 			stroke(#ffcc00,120);

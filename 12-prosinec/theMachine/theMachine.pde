@@ -1,13 +1,8 @@
-
-int num = 20;
-
+int num = 5;
 ArrayList bases;
 
-
 void setup(){
-
 	size(1280,720,P2D);
-
 	bases = new ArrayList();
 
 	for(int i =0 ; i< num ; i ++)
@@ -28,18 +23,6 @@ void draw(){
 		current.act();
 		current.plot();
 	}
-	
-	
-/*
-	for(int i = 0 ; i < bases.size() ; i ++){
-		Base current = (Base)bases.get(i);
-		current.animStep();
-	}
-
-	//frameLen++;
-
-	saveFrame("/desk/rostlinka/rostlina#####.png");
-*/
 }
 
 
@@ -54,15 +37,15 @@ class Base{
 
 	float speed = 10.0;
 
-
 	float timeSpread = 3000.0;
 
 	float time;
 	float step;
 
+	float [] w;
+
 	Base(int _id){
 		id = _id;
-
 		reset();
 		animStep();	
 	}
@@ -74,25 +57,20 @@ class Base{
 	}
 
 	void reset(){
-		
 		time = 0.1;
 		step = noise(id)/1000.0*timeSpread;
 
 		pos = new PVector(random(height),random(height));
 		vel = new PVector(0,0);
+		w = new float[code.length];
 
 		for(int i = 0 ; i < code.length;i++){
-		
-			
+			w[i] = random(0,1)/100.;			
 			code[i] = new PVector(0,-1, (noise(i*(id+1.0))*2-1.0) / speed );
-
-			
 		}
-
 	}
 
 	void bordr(){
-
 		if(pos.x > width || pos.x < 0)
 		for(int i = 0 ; i < code.length;i++)
 		code[i].x *= -1.0;
@@ -100,9 +78,19 @@ class Base{
 		if(pos.y > height || pos.y < 0)
 		for(int i = 0 ; i < code.length;i++)
 		code[i].y *= -1.0;
+	}
 
+	void loopInside(){
+		int i = (int)random(code.length);
+		//for(int i = 0 ; i < code.length;i++){
+		for(int q = 0 ; q < code.length;q++){
+			PVector p = code[q];
+			p.mult(w[i]);
+			code[i].add(p);
 
-
+		}
+		code[i].normalize();
+		//}
 	}
 
 	void act(){
@@ -111,20 +99,17 @@ class Base{
 
  		for(int i = 0 ; i < code.length;i++){
 		
+		loopInside();
+	
 		rotate2D(code[i], code[i].z );
 		vel.add(code[i]);
 			
 		}
 
-
-		
 		vel.normalize();
 		pos.add(vel);
 
-
 		bordr();
-
-
 
 		for(int i = 0 ; i < bases.size() ; i++ ){
 			Base b = (Base)bases.get(i);
@@ -152,24 +137,17 @@ class Base{
 			PVector.sub(code[i],code[i].cross(_b.code[i]));
 			code[i].normalize();
 		}
-		
-
 	}
 
 	void plot(){
 		pushMatrix();
-
 		translate(pos.x,pos.y);
-		
-			
-
 		pushMatrix();	
 		rectMode(CENTER);
 		rotate(atan2(vel.y,vel.x)+HALF_PI);
 		stroke(0,160);
 		rect(0,0,5,10);
 		popMatrix();
-
 
 		int y = -20;
 		int x = -5;
@@ -185,18 +163,13 @@ class Base{
 		x = -5;
 		}
 		}
-
 		
 		popMatrix();
-		
 	}
-
-	
 
  void rotate2D(PVector v, float theta) {
                  float xTemp = v.x;
                  v.x = v.x*cos(theta) - v.y*sin(theta);
                  v.y = xTemp*sin(theta) + v.y*cos(theta);
          }
-
 }
