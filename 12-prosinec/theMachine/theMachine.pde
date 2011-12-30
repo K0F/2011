@@ -1,4 +1,7 @@
-int num = 5;
+
+/////////////////////////////////////////////
+
+int num = 40;
 ArrayList bases;
 
 void setup(){
@@ -15,6 +18,8 @@ void setup(){
 	background(255);
 }
 
+///////////////////////////////////////////
+
 void draw(){
 	background(250);
 
@@ -25,6 +30,7 @@ void draw(){
 	}
 }
 
+	///////////////////////////////////////////////////
 
 
 class Base{
@@ -44,17 +50,23 @@ class Base{
 
 	float [] w;
 
+	//////////////////////////////////////////////////
+
 	Base(int _id){
 		id = _id;
 		reset();
 		animStep();	
 	}
 
+	///////////////////////////////////////////////////
+
 	void animStep(){
 		reset();
 		speed += 1;
 		timeSpread += 0.00001;
 	}
+
+	///////////////////////////////////////////////////
 
 	void reset(){
 		time = 0.1;
@@ -70,6 +82,8 @@ class Base{
 		}
 	}
 
+	/////////////////////////////////////////////////////
+
 	void bordr(){
 		if(pos.x > width || pos.x < 0)
 		for(int i = 0 ; i < code.length;i++)
@@ -79,6 +93,8 @@ class Base{
 		for(int i = 0 ; i < code.length;i++)
 		code[i].y *= -1.0;
 	}
+
+	//////////////////////////////////////////////////////
 
 	void loopInside(){
 		int i = (int)random(code.length);
@@ -92,6 +108,8 @@ class Base{
 		code[i].normalize();
 		//}
 	}
+
+	///////////////////////////////////////////////////////
 
 	void act(){
 
@@ -126,18 +144,21 @@ class Base{
 		//for (int i =0 ; i < code.length;i++){ 	
 		//int r = (int)(noise(id*time*id)*(code.length));
 		//code[r].add(b.vel);
-//		code[i].normalize();
+		//code[i].normalize();
 		//}
 		
 	}
 
+	/////////////////////////////////////////////////////
+
 	void repulse(Base _b){
 		for(int i =0 ; i < code.length;i++){
-			
 			PVector.sub(code[i],code[i].cross(_b.code[i]));
 			code[i].normalize();
 		}
 	}
+
+	//////////////////////////////////////////////////////
 
 	void plot(){
 		pushMatrix();
@@ -152,7 +173,7 @@ class Base{
 		int y = -20;
 		int x = -5;
 		for(int i =0 ;i<code.length;i++){
-		stroke(atan2(code[i].y,code[i].x)*255);
+		stroke(map(code[i].mag(),0.1,0.6,0,255));
 		
 		point(x,y);
 
@@ -167,7 +188,9 @@ class Base{
 		popMatrix();
 	}
 
- void rotate2D(PVector v, float theta) {
+	///////////////////////////////////////////////////
+
+ 	void rotate2D(PVector v, float theta) {
                  float xTemp = v.x;
                  v.x = v.x*cos(theta) - v.y*sin(theta);
                  v.y = xTemp*sin(theta) + v.y*cos(theta);

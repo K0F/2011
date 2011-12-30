@@ -1,38 +1,37 @@
-// hold graph
+
+
 float[] graph;
 
-// selects strip from 1-D pelin sequence
-float compress = 80.0;
-
-// define how quick graph should proceed
+float compress = 70.0;
 float speed = 26.0;
 
 
 void setup(){
-	size(900,900,P2D);
+	size(600,600,P2D);
 
 	graph = new float[width];
 
 	stroke(255,20);
+
+
 }
 
 float theta = 0;
-
-// smoothing gives more smoothed steps
-float smoothing = 4000.0;
+float smoothing = 2000.0;
 
 float mx,mn;
 
-float R = 450;
+
+float R = 300;
 
 void draw(){
 
 
-	compress= 30 + ( millis() / 50.0 ) / ( 40.0 );	
+	compress= 30+(millis()/50.0)/(30.0);	
 
-	background( #000000 );
+	background(#000000);
 
-	fill( #020202 );
+	fill(#020202);
 	noStroke();
 
 	//ellipse(width/2,height/2,width,height);	
@@ -41,19 +40,16 @@ void draw(){
 	mx = 0;
 	for(int i =0 ; i < width;i++){
 		graph[i] = noise(i/compress+frameCount/speed)*height;
+
 		mx = max(mx,graph[i]);
 		mn = min(mn,graph[i]);
 	}
 
 
-	textFont(createFont("Semplice Regular",8,false));
-	textMode(SCREEN);
-
 	translate(width/2,-height/2);
 
 	pushMatrix();
 
-	fill(255);
 	translate(0,height);
 
 	rotate(PI/(millis()/1000.0));
@@ -77,25 +73,24 @@ void draw(){
 			float f = noise(frameCount/4441.417)*200.;
 			rotate(map(width-i,0,width,-PI,PI)+0.5*noise(s/(f+.1)));
 
+
 			//if((mn==graph[i] || mn==graph[i-1]) )
 			//line(0,0,0,10);
 
+
 			//if((mx==graph[i] || mx==graph[i-1]) )
 			//line(0,y1,0,0);
-			
+
+
 			theta = atan2(y1-y2,x1-x2) ;
 			strokeWeight(theta*3);
 			stroke(lerpColor(#ffffff,#ff0000,norm(theta,-2,2)),map(s,0,smoothing,50,3));
 
 			line(x1,y1,x2,y2);
 
-			if(i%30==0){
-				float X = screenX(x1,y1);
-				float Y = screenY(x2,y2);
-				text(i,X,Y);
-			}
-			
-			
+
+
+
 			if(false){
 				stroke(#aaaaaa,map(s,0,smoothing,50,0));
 				pushMatrix();
@@ -104,7 +99,11 @@ void draw(){
 				line(0,20,0,0);
 				popMatrix();
 			}
+
+
 			popMatrix();
 		}
+
 	popMatrix();
+
 }
