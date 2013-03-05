@@ -1,0 +1,19 @@
+name compress-L
+num_vertices 5
+vertex -4.75 -1
+left_tangent -4.75 -1
+right_tangent -4.75 -1
+vertex -0.7 -0.7
+left_tangent -0.765463 -0.7587
+right_tangent -0.7 -0.7
+vertex 0 0
+left_tangent 0 0
+right_tangent 0 0
+vertex 0.7 0.7
+left_tangent 0.7 0.7
+right_tangent 0.918064 0.912729
+vertex 5.8 1
+left_tangent 5.8 1
+right_tangent 5.8 1
+curve_resolution 0.0003333
+color 1 0 0

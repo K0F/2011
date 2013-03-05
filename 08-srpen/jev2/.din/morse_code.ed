@@ -1,0 +1,10 @@
+editor morse-code
+window -104.731 -671.986 1997.18 904.448
+win_chunk 100 50
+obj_chunk 0.05 0.1
+snap 3
+win_resolution 1
+carry_tangents 1
+mirror_tangents 0
+sine_enabled 0
+label_vertex 0

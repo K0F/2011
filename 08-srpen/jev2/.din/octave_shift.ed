@@ -1,0 +1,10 @@
+editor octave-shift
+window -546.714 -108.165 2539.96 2206.84
+win_chunk 90 75
+obj_chunk 0.05 0.1
+snap 3
+win_resolution 0
+carry_tangents 1
+mirror_tangents 0
+sine_enabled 0
+label_vertex 0

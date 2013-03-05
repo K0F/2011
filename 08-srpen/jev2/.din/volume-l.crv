@@ -1,0 +1,10 @@
+name volume-l
+num_vertices 2
+vertex 0 0.2
+left_tangent -0.1 0.2
+right_tangent 0.45 0.8
+vertex 1 0.2
+left_tangent 0.6 -0.45
+right_tangent 1.1 0.2
+curve_resolution 0.0005
+color 1 0 0

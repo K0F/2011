@@ -1,0 +1,237 @@
+num_curves 14
+name octave_shift
+num_vertices 2
+vertex 0 1
+left_tangent 0 1
+right_tangent 0 1
+vertex 0 2
+left_tangent 0 2
+right_tangent 0 2
+curve_resolution 0.000333301
+color 1 0 0
+name octave_shift
+num_vertices 2
+vertex 0 1
+left_tangent 0 1
+right_tangent 0 1
+vertex 1 2
+left_tangent 1 2
+right_tangent 1 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 4
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.1 1.5
+vertex 0.4 1.5
+left_tangent 0.4 1.5
+right_tangent 0.4 1.5
+vertex 0.7 1.5
+left_tangent 0.7 1.5
+right_tangent 0.7 1.5
+vertex 1 2
+left_tangent 0.9 1.5
+right_tangent 1.05 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 4
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.203757 1.24138
+vertex 0.402924 1.33293
+left_tangent 0.352924 1.33293
+right_tangent 0.617416 1.33395
+vertex 0.7 1.5
+left_tangent 0.478204 1.49977
+right_tangent 0.75 1.5
+vertex 1 2
+left_tangent 0.9 1.5
+right_tangent 1.05 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 4
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.44215 1.0087
+vertex 0.4 1.5
+left_tangent 0.35 1.5
+right_tangent 0.660907 1.50016
+vertex 0.701483 1.33164
+left_tangent 0.699719 1.50016
+right_tangent 1.00845 1.33296
+vertex 1 2
+left_tangent 0.95 1.5
+right_tangent 1.05 2
+curve_resolution 0.000333301
+color 1 0 0
+name octave_shift
+num_vertices 2
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.6 1
+vertex 1 2
+left_tangent 0.9 1
+right_tangent 1.05 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 4
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.0186859 2.95045
+vertex 0.2 1.5
+left_tangent 0.2 1.5
+right_tangent 0.2 1.5
+vertex 0.85 1.5
+left_tangent 0.85 1.5
+right_tangent 0.85 1.5
+vertex 1 2
+left_tangent 0.961334 0.104383
+right_tangent 1.05 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 4
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.0186859 2.95045
+vertex 0.2 1.333
+left_tangent 0.2 1.333
+right_tangent 0.2 1.333
+vertex 0.85 1.333
+left_tangent 0.85 1.333
+right_tangent 0.85 1.333
+vertex 1 2
+left_tangent 0.961334 0.104383
+right_tangent 1.05 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 2
+vertex 0 1
+left_tangent -0.00146995 0.950022
+right_tangent 0.05 2.7
+vertex 1 2
+left_tangent 0.95 0.2
+right_tangent 1.00278 2.09996
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 4
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.0186859 2.95045
+vertex 0.2 1.5
+left_tangent 0.2 1.5
+right_tangent 0.2 1.5
+vertex 0.85 1.5
+left_tangent 0.85 1.5
+right_tangent 0.85 1.5
+vertex 1 2
+left_tangent 0.961334 0.104383
+right_tangent 1.05 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 15
+vertex 0 1
+left_tangent 0 1
+right_tangent 0 1
+vertex 0.0279526 1.5
+left_tangent 0.0279526 1.5
+right_tangent 0.0279526 1.5
+vertex 0.0604559 0.5
+left_tangent 0.0604559 0.5
+right_tangent 0.0604559 0.5
+vertex 0.160374 1.5
+left_tangent 0.160374 1.5
+right_tangent 0.160374 1.5
+vertex 0.25 0.5
+left_tangent 0.25 0.5
+right_tangent 0.25 0.5
+vertex 0.377063 0.5
+left_tangent 0.377063 0.5
+right_tangent 0.377063 0.5
+vertex 0.4 0.666
+left_tangent 0.4 0.666
+right_tangent 0.4 0.666
+vertex 0.5 0.666
+left_tangent 0.5 0.666
+right_tangent 0.5 0.666
+vertex 0.51791 0.5
+left_tangent 0.51791 0.5
+right_tangent 0.51791 0.5
+vertex 0.623847 0.5
+left_tangent 0.623847 0.5
+right_tangent 0.623847 0.5
+vertex 0.65 1.333
+left_tangent 0.65 1.333
+right_tangent 0.65 1.333
+vertex 0.8 1.333
+left_tangent 0.8 1.333
+right_tangent 0.8 1.333
+vertex 0.82609 0.5
+left_tangent 0.82609 0.5
+right_tangent 0.82609 0.5
+vertex 0.95 0.5
+left_tangent 0.95 0.5
+right_tangent 0.95 0.5
+vertex 1 2
+left_tangent 1 2
+right_tangent 1 2
+curve_resolution 0.0003333
+color 1 0 0
+name octave_shift
+num_vertices 4
+vertex 0 1
+left_tangent -0.04 1
+right_tangent 0.04 1
+vertex 0.3 1
+left_tangent 0.2 1
+right_tangent 0.65 1
+vertex 0.7 2
+left_tangent 0.45 2
+right_tangent 0.75 2
+vertex 1 2
+left_tangent 0.97 2
+right_tangent 1.03 2
+curve_resolution 0.0005
+color 1 0 0
+name octave_shift
+num_vertices 5
+vertex 0 1
+left_tangent -0.05 0.9
+right_tangent 0.05 1.8
+vertex 0.35 2
+left_tangent 0.35 2
+right_tangent 0.35 2
+vertex 0.5 2
+left_tangent 0.5 2
+right_tangent 0.5 2
+vertex 0.6 2
+left_tangent 0.6 2
+right_tangent 0.6 2
+vertex 1 1
+left_tangent 0.95 1.8
+right_tangent 1.05 0.9
+curve_resolution 0.0005
+color 1 0 0
+name os
+num_vertices 4
+vertex 0 1
+left_tangent -0.05 1
+right_tangent 0.0186859 2.95045
+vertex 0.2 1.33333
+left_tangent 0.2 1.33333
+right_tangent 0.2 1.33333
+vertex 0.8 1.33333
+left_tangent 0.8 1.33333
+right_tangent 0.8 1.33333
+vertex 1 2
+left_tangent 0.961334 0.104383
+right_tangent 1.05 2
+curve_resolution 0.0003333
+color 1 0 0

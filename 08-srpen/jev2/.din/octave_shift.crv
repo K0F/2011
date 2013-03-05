@@ -1,0 +1,16 @@
+name os
+num_vertices 4
+vertex 0 1
+left_tangent -0.00821989 0.950681
+right_tangent 0.3 2.8
+vertex 0.45 1.5
+left_tangent 0.3 1.5
+right_tangent 0.45 1.5
+vertex 0.6 1.5
+left_tangent 0.6 1.5
+right_tangent 0.75 1.5
+vertex 1 2
+left_tangent 0.75 0.4
+right_tangent 1.01544 2.0988
+curve_resolution 0.0003333
+color 1 0 0

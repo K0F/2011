@@ -1,0 +1,10 @@
+name inner
+num_vertices 2
+vertex 0.4 0
+left_tangent 0.4 0
+right_tangent 0.4 0
+vertex 0.5 0
+left_tangent 0.5 0
+right_tangent 0.5 0
+curve_resolution 0.000333308
+color 0 0 1

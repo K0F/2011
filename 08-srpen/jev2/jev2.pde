@@ -6,6 +6,8 @@ import javax.media.opengl.GL;
 PGraphicsOpenGL pgl; //need to use this to stop screen tearing
 GL gl;
 
+boolean render = false;
+
 void setup(){
     size(1280,720);
     smooth();
@@ -77,7 +79,9 @@ void draw(){
 
 
         if(frameCount<=9750){
-        saveFrame("/home/kof/render/jev_2_3/br#####.png");
+        
+          if(render)
+          saveFrame("/home/kof/render/jev_2_3/br#####.png");
         }else{
             exit();
         }

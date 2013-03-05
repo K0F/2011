@@ -1,0 +1,70 @@
+curve editor help:
+
+	esc: quit editor
+
+	curve selection:
+
+		r: pick curve control points / handles under cursor.
+		left_arrow: goto previous selection in the list
+		right_arrow: goto next selection in the list
+
+	curve edit:
+
+		f: press to pick control point / handle, move with mouse (no need to click-drag) and press f again to stop.
+		LSHIFT + f: move picked control point and all following control points. therefore, pick first control point
+		to move the whole curve.
+		i: press once to pick curve, press again to insert control point.
+		v: delete control point / handles under cursor - wont delete if curve has only 2 control points left.
+		t: mirror control point / handles about x-axis. press LSHIFT + t to mirror the entire curve.
+		g: start a scratch curve. press once to pick curve. press as necessary to add control points.
+		h: complete scratch curve and replace the picked curve.
+		l: convert curve to polyline. press LSHIFT + l to fold handles of picked control point only.
+		k: convert curve to catmull rom curve. press LSHIFT + k to unfurl handles of picked control point only.
+		[: decrease curve resolution.
+		]: increase curve resolution.
+		LCTRL + c: copy curve under cursor.
+		LCTRL + v: replace curve under cursor with copied curve.
+		z: undo last operation.
+		LCTRL + z: redo last operation.
+
+	curve library:
+		9: replace selected curve in editor with previous curve from library.
+		0: replace selected curve in editor with next curve in library.
+		-: delete current curve in library.
+		+: add curve in editor to library.
+
+	handles:
+		c: toggle if control points should carry their handles when moved.
+		m: toggle if a control point's handle is mirrored on its other handle.
+
+	movement:
+		w, s, a , d for up, down, left and right.
+
+	snap:
+		x: toggle x snap.
+		y: toggle y snap.
+		b: toggle x and y snap.
+		n: turn off snap.
+
+	visual:
+		f5, f6: decrease, increase x chunk size
+		LSHIFT + f5, LSHIFT + f6: decrease, increase y chunk size
+		;: change color of a picked curve.
+		l: toggle vertex labelling (dont press l on a vertex/tangent as curve turns to polyline)
+
+	mouse capture:
+		f7: start / stop mouse capture.
+		f8: assign mouse capture to control point / handle under cursor.
+		f9: detach mouse capture from control point / handle under cursor.
+
+	sine composer (magenta colored levels; only available in the waveform editor):
+		' : decrease number of samples
+		\ : increase number of samples
+		LALT: convert blue sine harmonics waveform to bezier waveform
+		
+		mouse must be inside the sine harmonic composer for the following:
+
+		f: press to move, press again to drop
+		g: press to set harmonic under cursor
+		h: set only the harmonic under cursor, set rest to 0
+		c: clear harmonic under cursor

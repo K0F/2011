@@ -1,0 +1,10 @@
+editor delay
+window -6288.05 -442.718 16513.1 16658
+win_chunk 467 739
+obj_chunk 0.05 0.05
+snap 3
+win_resolution 1
+carry_tangents 1
+mirror_tangents 0
+sine_enabled 0
+label_vertex 0

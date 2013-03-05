@@ -1,0 +1,16 @@
+name sine
+num_vertices 4
+vertex 0 0
+left_tangent -0.025 -0.1
+right_tangent 0.0305722 0.176527
+vertex 0.25 1
+left_tangent 0.144441 1.01713
+right_tangent 0.433994 0.995295
+vertex 0.75 -1
+left_tangent 0.571722 -1.01341
+right_tangent 0.858021 -1.00614
+vertex 1 0
+left_tangent 0.95306 -0.247936
+right_tangent 1.025 0.1
+curve_resolution 0.000333308
+color 1 1 1

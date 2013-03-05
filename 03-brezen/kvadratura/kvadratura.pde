@@ -30,7 +30,7 @@ void draw(){
   } 
 
   if(rec)
-      saveFrame("/desk/opto/opto####.png");
+      saveFrame("/home/kof/render/kvadratura/fr####.tga");
 }
 
 class Misery{

@@ -1,0 +1,145 @@
+din - 1.6.6
+
+Copyright (c) 2006-2011 S Jagannathan <jag@dinisnoise.org>.
+For more information, please visit http://dinisnoise.org
+Distributed under GNU Public License Version 2.0.
+din is Free Software.
+
+Editors:
+
+1 : strength
+2 : waveform
+3 : channels (L & R)
+4 :	modulation
+5 : gaters
+6 : delay
+7 : octave shift
+8 : drone
+
+See set-curve-editor command to change editor assignments.
+
+Oscilloscope:
+
+	RCTRL: show/hide oscilloscope
+	RMENU: pause oscilloscope
+
+	Left click on oscilloscope to move. Left click again to drop.
+
+	Right click on oscilloscope to resize:
+
+		Move in Y to increase/decrease height.
+		Move in X to increase/decrease width.
+
+Drone:
+
+	Anchors are droned tones.
+	Height of an anchor determines drone volume.
+
+	Left click drag to select multiple drones.
+
+	q - add drones. key repeat enabled
+	e - press once to edit selected drones. press e again to stop.
+	    move in x changes pitch of selected drones.
+			move in y changes volume of selected drones.
+			move in both changes both.
+	c - delete selected drones
+
+	<space> - mute/unmute resonators (eg., mute when you want to work with drones only)
+
+	Commands
+
+	  set-var snap_drones 1 ;# snap drones to notes.
+		set-var snap_drones 0 ;# drone any tone
+
+	, - decrease drone master volume
+	. - increase drone master volume
+	/ - mute / unmute drones
+
+Phrasor:
+
+	f - start/stop recording phrases
+	v - play
+	g - erase all phrases
+
+	down arrow - set cue point
+	up arrow - goto cue point
+
+	left arrow - rewind playback
+	right arrow - speedup playback
+	[ - decrease jog amount
+	] - increase jog amount
+
+Delay:
+
+	' - toggle delay
+
+	See set-delay command to set delay time
+	See delay editor (press 6) to change feedback & volume curves.
+
+Modulation:
+	
+  F5 & F6: change AM (amplitude modulation) rate in bpm
+  F7 & F8: change FM (frequency modulation) rate in bpm
+  r and t: decrease/increase AM depth
+  y and u: decrease/increase FM depth
+
+Gater:
+
+	2 gaters are available. 1 for L and another for R.
+
+	b - toggle gater
+	F9/F10: decrease/increase gaters bpm
+	LSHIFT + F9/F10 : decrease/increase left gater bpm ie gl
+	LCTRL + F9/F10 : decrease/increase right gater bpm ie gr
+
+
+Octave shift:
+
+	z - shift down an octave
+	x - shift up an octave
+
+Tap bpm:
+
+	ENTER: tap to set the BPM of tap target
+
+	Set tap target at the command mode:
+
+	set taptarget {gl gr} ;# sets tap target to left & right gaters
+	set taptarget {fm am gl gr os} ;# sets tap target to FM, AM, left & right gaters & octave shift
+
+Tuning:
+
+	<semicolon> : set key to tone under cursor
+	n: tune nearest note to tone under cursor
+	LSHIFT + n: restore nearest note to original tuning
+	LCTRL + n: restore all notes to original tuning
+
+Ranges:
+
+	m: set number of microtones in current range to default
+	LSHIFT + m: set num microtones in all ranges to default
+	LCTRL + m: set num microtones in all ranges to num microtones in current range
+	LSHFT + mouse move : increase number of microtones to right
+	LCTRL + mouse move : increase number of microtones to left
+	h + mouse move: change height of all ranges ie increase number of volume levels
+
+Console:
+
+	ins, del: scroll up, down
+	pgup, pgdn: page up, page down
+	<backspace>: delete all text in console
+	` : rollup/unfurl console
+
+	<tab> : enter/leave command mode
+	up_arrow, down_arrow: navigate command history
+
+	In command mode, type help to reveal available commands. Or type help command_name
+	to get help for a particular command.
+
+Visual:
+
+	i : toggle display of frequencies on notes & under mouse cursor
+
+Movement:
+
+	a, d, w, s: left, right, up and down

@@ -1,0 +1,10 @@
+name feedback-l
+num_vertices 2
+vertex 0 0.9
+left_tangent -0.1 0.9
+right_tangent 0.15 1
+vertex 1 0.9
+left_tangent 0.9 1
+right_tangent 1.1 0.9
+curve_resolution 0.0005
+color 0 1 1

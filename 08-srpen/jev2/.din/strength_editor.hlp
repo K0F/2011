@@ -1,0 +1,10 @@
+
+strength editor:
+	LSHIFT + r : add resonator
+	. : enable/disable resonator under cursor
+	/ : disable all resonators except the resonator under cursor
+	F2 : enable previous resonator, disable the rest
+	F3 : enable next resonator, disable the rest
+	F4 : enable all resonators
+
+	use delete-disabled-resonators command to delete resonators
